@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Resources/Fonts/Titillium.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Resources/Sprites/NumberTile.png" type="Texture" id=2]
+
+[node name="NumberTile" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 50.0
+margin_bottom = 50.0
+rect_clip_content = true
+custom_fonts/font = ExtResource( 1 )
+text = "9"
+align = 1
+valign = 1
