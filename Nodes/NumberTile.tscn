@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/Fonts/Titillium.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Resources/Sprites/NumberTile.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Animations/FlashBlue.tres" type="Animation" id=3]
 [ext_resource path="res://Resources/Animations/FlashRed.tres" type="Animation" id=4]
+[ext_resource path="res://Nodes/NumberTile.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -49,6 +50,7 @@ tracks/3/keys = {
 }
 
 [node name="NumberTile" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
