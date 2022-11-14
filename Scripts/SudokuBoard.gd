@@ -29,7 +29,17 @@ func InitialiseCleanBoard():
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
 	]
 
-# BOARD VALIDITY CHECK
+# BOARD CHECKS
+
+func CheckBoardDone():
+	return (CheckBoardCompleteness() && CheckBoardValidity())
+
+func CheckBoardCompleteness():
+	for i in board:
+		if 0 in i:
+			return false
+	return true
+
 func CheckBoardValidity():
 	for i in range(9):
 		if not CheckLineValidity(i):

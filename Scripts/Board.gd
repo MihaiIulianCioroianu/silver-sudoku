@@ -30,6 +30,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
+# INPUT EVENT
 func _input(event):
 	var kinput = -1;
 	if event.is_action_pressed("1"):
