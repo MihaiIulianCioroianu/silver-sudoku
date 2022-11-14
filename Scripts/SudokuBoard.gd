@@ -43,7 +43,7 @@ func InitialiseCleanBoard():
 
 # BOARD CHECKS
 func CheckBoardDone():
-	return (CheckBoardCompleteness() && CheckBoardValidity())
+	return (CheckBoardCompleteness() and (CheckBoardValidity().empty()))
 
 func CheckBoardCompleteness():
 	for i in board:
@@ -52,14 +52,12 @@ func CheckBoardCompleteness():
 	return true
 
 func CheckBoardValidity():
+	var checkResult = []
 	for i in range(9):
-		if not CheckLineValidity(i):
-			return false
-		if not CheckColumnValidity(i):
-			return false
-		if not CheckSquareValidity(i/3, i%3):
-			return false
-	return true
+		checkResult.append_array(CheckLineValidity(i))
+		checkResult.append_array(CheckColumnValidity(i))
+		checkResult.append_array(CheckSquareValidity(i/3, i%3))
+	return checkResult
 
 func CheckGO9Validity(go9):
 	var symbolCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -72,20 +70,48 @@ func CheckGO9Validity(go9):
 	return true
 
 func CheckLineValidity(lineNumber):
-	return CheckGO9Validity(board[lineNumber])
+	var checkResult = []
+	if CheckGO9Validity(board[lineNumber]):
+		pass
+	else:
+		for i in FindDuplicates(board[lineNumber]):
+			checkResult.append(Vector2(lineNumber, i))
+	return checkResult
 
 func CheckColumnValidity(columnNumber):
 	var column = []
 	for i in board:
 		column.append(i[columnNumber])
-	return CheckGO9Validity(column)
+	var checkResult = []
+	if CheckGO9Validity(column):
+		pass
+	else:
+		for i in FindDuplicates(column):
+			checkResult.append(Vector2(i, columnNumber))
+	return checkResult
 
 func CheckSquareValidity(squareX, squareY):
 	var square = []
 	for i in range(squareX*3, squareX*3+3):
 		for j in range(squareY*3, squareY*3+3):
 			square.append(board[i][j])
-	return CheckGO9Validity(square)
+	var checkResult = []
+	if CheckGO9Validity(square):
+		pass
+	else:
+		for i in FindDuplicates(square):
+			checkResult.append(Vector2(squareX*3+i/3, squareY*3+i%3))
+	return checkResult
+
+func FindDuplicates(go9):
+	var duplicatesFound = []
+	for i in go9:
+		if i:
+			if go9.count(i)>1:
+				for j in range(9):
+					if go9[j] == i:
+						duplicatesFound.append(j)
+	return duplicatesFound
 
 # GETTER
 func GetBoard():
@@ -101,5 +127,6 @@ func UpdateBoard(newBoard):
 func ChangeTile(address, value):
 	board[address.x][address.y] = value
 
-
+func ResetBoard():
+	board = DuplicateBoard(originalBoard)
 

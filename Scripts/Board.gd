@@ -45,6 +45,9 @@ func _input(event):
 		kinput = 9
 	elif event.is_action_pressed("BACKSPACE"):
 		kinput = 0
+	elif event.is_action_pressed("RESET"):
+		CurrentSudoku().ResetBoard()
+		Refresh()
 	if (kinput in range(10)):
 		UpdateTile(kinput)
 
@@ -98,7 +101,12 @@ func UpdateTile(kinput):
 
 # CHECKER
 func CheckBoardValid():
-	print(CurrentSudoku().CheckBoardValidity())
+	var checkResult = CurrentSudoku().CheckBoardValidity()
+	if (checkResult.empty()):
+		pass
+	else:
+		for i in checkResult:
+			GetTile(i).FlashRed()
 
 # SIGNAL CATCHERS
 func _on_tile_pressed(address):
