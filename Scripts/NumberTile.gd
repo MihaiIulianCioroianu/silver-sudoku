@@ -4,6 +4,7 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+signal TilePressed
 export var number = 0
 export var null_value = 0
 var selected = false
@@ -40,3 +41,11 @@ func FlashBlue():
 func Activate():
 	selected = true
 	$AnimationPlayer.play("Pulse")
+
+func Deactivate():
+	selected = false
+	$AnimationPlayer.stop()
+	$AnimationPlayer.play("RESET")
+
+func _on_Tile_pressed():
+	emit_signal("TilePressed", address)
