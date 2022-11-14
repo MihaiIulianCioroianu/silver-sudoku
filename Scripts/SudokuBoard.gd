@@ -82,8 +82,8 @@ func CheckColumnValidity(columnNumber):
 
 func CheckSquareValidity(squareX, squareY):
 	var square = []
-	for i in range(squareX*3, squareX*3+2):
-		for j in range(squareY*3, squareY*3+2):
+	for i in range(squareX*3, squareX*3+3):
+		for j in range(squareY*3, squareY*3+3):
 			square.append(board[i][j])
 	return CheckGO9Validity(square)
 
@@ -99,7 +99,7 @@ func UpdateBoard(newBoard):
 	board = newBoard
 
 func ChangeTile(address, value):
-	pass
+	board[address.x][address.y] = value
 
 
 

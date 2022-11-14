@@ -98,8 +98,7 @@ func UpdateTile(kinput):
 
 # CHECKER
 func CheckBoardValid():
-	if not CurrentSudoku().CheckBoardValidity():
-		pass
+	print(CurrentSudoku().CheckBoardValidity())
 
 # SIGNAL CATCHERS
 func _on_tile_pressed(address):
