@@ -16,3 +16,5 @@ texture = ExtResource( 3 )
 centered = false
 
 [node name="Tiles" type="Node2D" parent="."]
+
+[node name="SudokuBoards" type="Node" parent="."]
