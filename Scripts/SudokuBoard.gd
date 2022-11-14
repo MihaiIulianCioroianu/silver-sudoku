@@ -1,10 +1,11 @@
-extends Node
+extends "res://Scripts/SystemFunctions.gd"
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 var board = []
+var originalBoard = []
 
 
 # Called when the node enters the scene tree for the first time.
@@ -18,19 +19,29 @@ func _ready():
 # BOARD INITIALISATION
 func InitialiseCleanBoard():
 	board = [
-		[0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0],
-	]
+		[1, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 2, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 3, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 4, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 5, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 6, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 7, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 8, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 9],
+		]
+	originalBoard = [
+		[1, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 2, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 3, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 4, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 5, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 6, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 7, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 8, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 9],
+		]
 
 # BOARD CHECKS
-
 func CheckBoardDone():
 	return (CheckBoardCompleteness() && CheckBoardValidity())
 
@@ -75,3 +86,20 @@ func CheckSquareValidity(squareX, squareY):
 		for j in range(squareY*3, squareY*3+2):
 			square.append(board[i][j])
 	return CheckGO9Validity(square)
+
+# GETTER
+func GetBoard():
+	return DuplicateBoard(board)
+
+func GetOriginalBoard():
+	return DuplicateBoard(originalBoard)
+
+# LOADER/SAVER
+func UpdateBoard(newBoard):
+	board = newBoard
+
+func ChangeTile(address, value):
+	pass
+
+
+
