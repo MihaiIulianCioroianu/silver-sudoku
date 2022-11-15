@@ -22,7 +22,6 @@ func _process(delta):
 		OS.set_window_position(OS.get_window_position() - mousePositionDifference)
 
 # BAR VIEWPORT
-
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == 1 and event.is_pressed():
@@ -31,3 +30,9 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 		elif event.button_index == 1 and not event.is_pressed():
 			dragging = false
 
+# BAR BUTTONS
+func _on_MinimizeButton_pressed():
+	OS.set_window_minimized(true)
+
+func _on_CloseButton_pressed():
+	get_tree().quit()
