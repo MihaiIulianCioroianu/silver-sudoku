@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Resources/Sprites/GameBG.png" type="Texture" id=1]
+[ext_resource path="res://Nodes/Board.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Game.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 250, 10 )
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Board" parent="." instance=ExtResource( 2 )]
+position = Vector2( 19, 132 )
+
+[node name="Bar" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bar"]
+position = Vector2( 250, 10 )
+shape = SubResource( 1 )
+
+[connection signal="input_event" from="Bar" to="." method="_on_Area2D_input_event"]

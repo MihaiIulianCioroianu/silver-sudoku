@@ -16,6 +16,7 @@ func _ready():
 	AddTiles()
 	AddTestBoard()
 	Refresh()
+	#OS.window_position = Vector2(100, 100)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

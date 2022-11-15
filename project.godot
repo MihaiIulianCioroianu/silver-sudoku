@@ -13,6 +13,12 @@ config_version=4
 config/name="Project Kakashi"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=500
+window/size/height=700
+window/size/borderless=true
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
