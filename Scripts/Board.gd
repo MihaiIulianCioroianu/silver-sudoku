@@ -16,6 +16,7 @@ func _ready():
 	AddTiles()
 	AddTestBoard()
 	Refresh()
+	#OS.window_position = Vector2(100, 100)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,6 +49,12 @@ func _input(event):
 	elif event.is_action_pressed("RESET"):
 		CurrentSudoku().ResetBoard()
 		Refresh()
+	elif event.is_action_pressed("CHECK"):
+		if CurrentSudoku().CheckBoardDone():
+			for i in range(81):
+				GetTile(Vector2(i%9, i/9)).FlashBlue()
+		else:
+			print("Nope")
 	if (kinput in range(10)):
 		UpdateTile(kinput)
 
