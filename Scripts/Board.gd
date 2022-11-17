@@ -1,4 +1,4 @@
-extends Node2D
+extends "res://Scripts/SystemFunctions.gd"
 
 
 # Declare member variables here. Examples:
@@ -9,13 +9,14 @@ const NUMBERTILE = preload("res://Nodes/NumberTile.tscn")
 const SUDOKUBOARD = preload("res://Nodes/SudokuBoard.tscn")
 var ins
 var selected = Vector2(0, 0)
-var sudokuID = 0
+var sudokuNewID = 0
+var sudokuID = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	AddTiles()
-	AddTestBoard()
-	Refresh()
+	#AddTestBoard()
+	#Refresh()
 	#OS.window_position = Vector2(100, 100)
 
 
@@ -55,6 +56,10 @@ func _input(event):
 				GetTile(Vector2(i%9, i/9)).FlashBlue()
 		else:
 			print("Nope")
+	elif event.is_action_pressed("ui_left"):
+		PreviousBoard()
+	elif event.is_action_pressed("ui_right"):
+		NextBoard()
 	if (kinput in range(10)):
 		UpdateTile(kinput)
 
@@ -62,7 +67,29 @@ func AddTestBoard():
 	ins = SUDOKUBOARD.instance()
 	ins.name = "SudokuBoard0"
 	$SudokuBoards.add_child(ins)
-	sudokuID = 0
+	sudokuNewID += 1
+
+func LoadBoard(boardData):
+	var loadedTable = []
+	ins = SUDOKUBOARD.instance()
+	ins.name = "SudokuBoard"+str(sudokuNewID)
+	for i in range(9):
+		loadedTable.append([])
+		for j in range(9):
+			loadedTable[i].append(int(boardData[i*9+j]))
+	ins.originalBoard = DuplicateBoard(loadedTable)
+	$SudokuBoards.add_child(ins)
+	sudokuNewID += 1
+
+func NextBoard():
+	if sudokuID < sudokuNewID - 1:
+		sudokuID += 1
+		Refresh()
+
+func PreviousBoard():
+	if sudokuID>0:
+		sudokuID -=1
+		Refresh()
 
 func AddTiles():
 	for i in range(81):
