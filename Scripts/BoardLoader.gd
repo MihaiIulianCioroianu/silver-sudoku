@@ -60,15 +60,8 @@ func _ready():
 		boardData = ""
 		f = File.new()
 		f.open("user://SudokuBoard"+str(id)+".sdk", File.WRITE)
-		print(f.get_path())
-		print("X")
-		print(f.get_position())
-		for j in i:
-			for k in j:
-				boardData += str(k)
-		f.store_pascal_string(boardData)
+		f.store_var(i)
 		f.close()
-		print(f.get_path())
 		id+=1
 
 

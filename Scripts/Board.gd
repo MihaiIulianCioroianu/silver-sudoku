@@ -73,11 +73,7 @@ func LoadBoard(boardData):
 	var loadedTable = []
 	ins = SUDOKUBOARD.instance()
 	ins.name = "SudokuBoard"+str(sudokuNewID)
-	for i in range(9):
-		loadedTable.append([])
-		for j in range(9):
-			loadedTable[i].append(int(boardData[i*9+j]))
-	ins.originalBoard = DuplicateBoard(loadedTable)
+	ins.originalBoard = DuplicateBoard(boardData)
 	$SudokuBoards.add_child(ins)
 	sudokuNewID += 1
 
