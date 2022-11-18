@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PlaceholderBoard.png-7336965f8461829422edddbd1f54d551.stex"
+path="res://.import/BoardSelectionShade.png-b7f544e525fc52722b52a980ba88512e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/PlaceholderBoard.png"
-dest_files=[ "res://.import/PlaceholderBoard.png-7336965f8461829422edddbd1f54d551.stex" ]
+source_file="res://Resources/Sprites/BoardSelectionShade.png"
+dest_files=[ "res://.import/BoardSelectionShade.png-b7f544e525fc52722b52a980ba88512e.stex" ]
 
 [params]
 
