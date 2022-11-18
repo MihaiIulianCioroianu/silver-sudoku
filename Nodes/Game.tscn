@@ -1,10 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Resources/Sprites/GameBG.png" type="Texture" id=1]
 [ext_resource path="res://Nodes/Board.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Sprites/MinimizeButton.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Sprites/CloseButton.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Sprites/BoardSelection.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Sprites/BoardSelectionShade0.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Sprites/BoardSelectionShade.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Fonts/Arial.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Resources/Sprites/Bar.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 230, 10 )
@@ -13,6 +18,7 @@ extents = Vector2( 230, 10 )
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 2 )
 texture = ExtResource( 1 )
 centered = false
 
@@ -25,18 +31,58 @@ position = Vector2( 19, 132 )
 position = Vector2( 230, 10 )
 shape = SubResource( 1 )
 
-[node name="CloseButton" type="TextureButton" parent="."]
+[node name="Sprite" type="Sprite" parent="Bar"]
+texture = ExtResource( 10 )
+centered = false
+
+[node name="CloseButton" type="TextureButton" parent="Bar"]
 margin_left = 480.0
 margin_right = 500.0
 margin_bottom = 20.0
 texture_normal = ExtResource( 5 )
 
-[node name="MinimizeButton" type="TextureButton" parent="."]
+[node name="MinimizeButton" type="TextureButton" parent="Bar"]
 margin_left = 460.0
 margin_right = 480.0
 margin_bottom = 20.0
 texture_normal = ExtResource( 4 )
 
+[node name="BoardSelector" type="Sprite" parent="."]
+position = Vector2( 400, 630 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Previous" type="TextureButton" parent="BoardSelector"]
+margin_left = 6.0
+margin_top = 15.0
+margin_right = 34.0
+margin_bottom = 35.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+stretch_mode = 2
+
+[node name="Next" type="TextureButton" parent="BoardSelector"]
+margin_left = 36.0
+margin_top = 15.0
+margin_right = 64.0
+margin_bottom = 35.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+stretch_mode = 2
+flip_h = true
+
+[node name="Label" type="Label" parent="BoardSelector"]
+modulate = Color( 0.184314, 0.184314, 0.184314, 1 )
+margin_left = 15.0
+margin_top = 3.0
+margin_right = 54.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 9 )
+text = "20772"
+align = 1
+
 [connection signal="input_event" from="Bar" to="." method="_on_Area2D_input_event"]
-[connection signal="pressed" from="CloseButton" to="." method="_on_CloseButton_pressed"]
-[connection signal="pressed" from="MinimizeButton" to="." method="_on_MinimizeButton_pressed"]
+[connection signal="pressed" from="Bar/CloseButton" to="." method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="Bar/MinimizeButton" to="." method="_on_MinimizeButton_pressed"]
+[connection signal="pressed" from="BoardSelector/Previous" to="Board" method="PreviousBoard"]
+[connection signal="pressed" from="BoardSelector/Next" to="Board" method="NextBoard"]

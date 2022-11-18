@@ -15,9 +15,7 @@ var sudokuID = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	AddTiles()
-	#AddTestBoard()
-	#Refresh()
-	#OS.window_position = Vector2(100, 100)
+	UpdateBoardNumberDisplay()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -63,6 +61,7 @@ func _input(event):
 	if (kinput in range(10)):
 		UpdateTile(kinput)
 
+# BOARD ADDING
 func AddTestBoard():
 	ins = SUDOKUBOARD.instance()
 	ins.name = "SudokuBoard0"
@@ -73,23 +72,25 @@ func LoadBoard(boardData):
 	var loadedTable = []
 	ins = SUDOKUBOARD.instance()
 	ins.name = "SudokuBoard"+str(sudokuNewID)
-	for i in range(9):
-		loadedTable.append([])
-		for j in range(9):
-			loadedTable[i].append(int(boardData[i*9+j]))
-	ins.originalBoard = DuplicateBoard(loadedTable)
+	ins.originalBoard = DuplicateBoard(boardData)
 	$SudokuBoards.add_child(ins)
 	sudokuNewID += 1
 
+# BOARD LOADING
 func NextBoard():
 	if sudokuID < sudokuNewID - 1:
 		sudokuID += 1
 		Refresh()
+		UpdateBoardNumberDisplay()
 
 func PreviousBoard():
 	if sudokuID>0:
 		sudokuID -=1
 		Refresh()
+		UpdateBoardNumberDisplay()
+
+func UpdateBoardNumberDisplay():
+	get_parent().UpdateBoardNumber(sudokuID)
 
 func AddTiles():
 	for i in range(81):

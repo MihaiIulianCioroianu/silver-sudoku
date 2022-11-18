@@ -32,19 +32,13 @@ func LoadBoards():
 		if file == "":
 			break
 		elif file.ends_with(".sdk"):
-			print(file)
 			files.append(file)
 	dir.list_dir_end()
 	for i in files:
-		print("user://"+i)
 		f = File.new()
 		f.open("user://"+i, File.READ)
-		print(f.get_error())
-		print(f.file_exists("user://SudokuBoard1.sdk"))
-		print(OS.get_executable_path())
 		f.seek(0)
-		#print(f.get_var())
-		$Board.LoadBoard(f.get_pascal_string())
+		$Board.LoadBoard(f.get_var())
 		f.close()
 	$Board.Refresh()
 
@@ -58,6 +52,9 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 			dragging = false
 
 # BAR BUTTONS
+func UpdateBoardNumber(numberToUpdate):
+	$BoardSelector/Label.text = str(numberToUpdate)
+
 func _on_MinimizeButton_pressed():
 	OS.set_window_minimized(true)
 
