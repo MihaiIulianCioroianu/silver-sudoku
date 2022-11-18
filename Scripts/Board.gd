@@ -15,6 +15,7 @@ var sudokuID = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	AddTiles()
+	UpdateBoardNumberDisplay()
 	#AddTestBoard()
 	#Refresh()
 	#OS.window_position = Vector2(100, 100)
@@ -81,11 +82,16 @@ func NextBoard():
 	if sudokuID < sudokuNewID - 1:
 		sudokuID += 1
 		Refresh()
+		UpdateBoardNumberDisplay()
 
 func PreviousBoard():
 	if sudokuID>0:
 		sudokuID -=1
 		Refresh()
+		UpdateBoardNumberDisplay()
+
+func UpdateBoardNumberDisplay():
+	get_parent().UpdateBoardNumber(sudokuID)
 
 func AddTiles():
 	for i in range(81):

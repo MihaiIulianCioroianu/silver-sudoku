@@ -52,6 +52,9 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 			dragging = false
 
 # BAR BUTTONS
+func UpdateBoardNumber(numberToUpdate):
+	$BoardSelector/Label.text = str(numberToUpdate)
+
 func _on_MinimizeButton_pressed():
 	OS.set_window_minimized(true)
 
