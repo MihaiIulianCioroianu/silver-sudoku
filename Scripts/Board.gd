@@ -16,9 +16,6 @@ var sudokuID = 1
 func _ready():
 	AddTiles()
 	UpdateBoardNumberDisplay()
-	#AddTestBoard()
-	#Refresh()
-	#OS.window_position = Vector2(100, 100)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -64,6 +61,7 @@ func _input(event):
 	if (kinput in range(10)):
 		UpdateTile(kinput)
 
+# BOARD ADDING
 func AddTestBoard():
 	ins = SUDOKUBOARD.instance()
 	ins.name = "SudokuBoard0"
@@ -78,6 +76,7 @@ func LoadBoard(boardData):
 	$SudokuBoards.add_child(ins)
 	sudokuNewID += 1
 
+# BOARD LOADING
 func NextBoard():
 	if sudokuID < sudokuNewID - 1:
 		sudokuID += 1
