@@ -109,6 +109,10 @@ func Refresh():
 	for line in range(9):
 		for column in range(9):
 			currentTile = get_node("Tiles/NumberTile-"+str(line)+str(column))
+			if OriginalBoard()[line][column] != 0:
+				currentTile.block()
+			else:
+				currentTile.unblock()
 			currentTile.SetNumber(currentBoard[line][column])
 
 # TILE GETTERS

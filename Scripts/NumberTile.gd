@@ -7,6 +7,7 @@ extends Node2D
 signal TilePressed
 export var number = 0
 export var null_value = 0
+export var blocked = false
 var selected = false
 var address = Vector2(0, 0)
 
@@ -49,3 +50,13 @@ func Deactivate():
 
 func _on_Tile_pressed():
 	emit_signal("TilePressed", address)
+
+# BLOCKING
+
+func block():
+	blocked = true
+	$TextureButton.disabled = true
+
+func unblock():
+	blocked = false
+	$TextureButton.disabled = false
