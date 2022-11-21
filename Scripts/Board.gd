@@ -82,12 +82,14 @@ func NextBoard():
 		sudokuID += 1
 		Refresh()
 		UpdateBoardNumberDisplay()
+		saveBoardLocation()
 
 func PreviousBoard():
 	if sudokuID>0:
 		sudokuID -=1
 		Refresh()
 		UpdateBoardNumberDisplay()
+		saveBoardLocation()
 
 func UpdateBoardNumberDisplay():
 	get_parent().UpdateBoardNumber(sudokuID)
@@ -152,3 +154,7 @@ func _on_tile_pressed(address):
 	SelectedTile().Deactivate()
 	selected = address
 	GetTile(address).Activate()
+
+# SAVE BOARD LOCATION
+func saveBoardLocation():
+	get_parent().saveBoardLocation(sudokuID)

@@ -5,6 +5,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 export var windowSize = 700
+const PAGESAVE = "user://PageLocation.uds"
 var windowSizeCheck = 700
 var monitoring = false
 var dragging = false
@@ -13,11 +14,18 @@ var mousePositionDifference
 var f
 var timeSinceLastBarClick = 0
 var windowScrolled = false
+var settings = {
+	"realTimeCorrection" : true
+	}
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	LoadBoards()
+	f = File.new()
+	if f.file_exists(PAGESAVE):
+		loadBoardLocation()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -86,3 +94,18 @@ func scrollWindow():
 		$AnimationPlayer.play("Scroll")
 	else:
 		$AnimationPlayer.play("Descroll")
+
+# SAVES
+func saveBoardLocation(sudokuID):
+	f = File.new()
+	f.open(PAGESAVE, File.WRITE)
+	f.seek(0)
+	f.store_var(sudokuID)
+
+func loadBoardLocation():
+	f = File.new()
+	f.open(PAGESAVE, File.READ)
+	f.seek(0)
+	$Board.sudokuID = f.get_var()
+	$Board.Refresh()
+	$Board.UpdateBoardNumberDisplay()
