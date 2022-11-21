@@ -82,12 +82,14 @@ func NextBoard():
 		sudokuID += 1
 		Refresh()
 		UpdateBoardNumberDisplay()
+		saveBoardLocation()
 
 func PreviousBoard():
 	if sudokuID>0:
 		sudokuID -=1
 		Refresh()
 		UpdateBoardNumberDisplay()
+		saveBoardLocation()
 
 func UpdateBoardNumberDisplay():
 	get_parent().UpdateBoardNumber(sudokuID)
@@ -109,6 +111,10 @@ func Refresh():
 	for line in range(9):
 		for column in range(9):
 			currentTile = get_node("Tiles/NumberTile-"+str(line)+str(column))
+			if OriginalBoard()[line][column] != 0:
+				currentTile.block()
+			else:
+				currentTile.unblock()
 			currentTile.SetNumber(currentBoard[line][column])
 
 # TILE GETTERS
@@ -148,3 +154,7 @@ func _on_tile_pressed(address):
 	SelectedTile().Deactivate()
 	selected = address
 	GetTile(address).Activate()
+
+# SAVE BOARD LOCATION
+func saveBoardLocation():
+	get_parent().saveBoardLocation(sudokuID)

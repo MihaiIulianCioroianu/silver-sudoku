@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Resources/Fonts/Titillium.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Resources/Sprites/NumberTile.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scripts/NumberTile.gd" type="Script" id=5]
 [ext_resource path="res://Resources/Animations/Pulse.tres" type="Animation" id=6]
 [ext_resource path="res://Resources/Sprites/NumberTileMask.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Sprites/NumberTileMaskB.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -78,5 +79,6 @@ anims/RESET = SubResource( 1 )
 margin_right = 40.0
 margin_bottom = 40.0
 texture_normal = ExtResource( 7 )
+texture_disabled = ExtResource( 8 )
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_Tile_pressed"]
