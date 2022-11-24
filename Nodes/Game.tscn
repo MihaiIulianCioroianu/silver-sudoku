@@ -101,6 +101,10 @@ position = Vector2( 0, 20 )
 
 [node name="Bar" type="Area2D" parent="."]
 
+[node name="MouseBlocker" type="ColorRect" parent="Bar"]
+margin_right = 460.0
+margin_bottom = 20.0
+
 [node name="Sprite" type="Sprite" parent="Bar"]
 texture = ExtResource( 10 )
 centered = false
