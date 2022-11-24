@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Resources/Sprites/GameBG.png" type="Texture" id=1]
 [ext_resource path="res://Nodes/Board.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Resources/Animations/FadeOut.tres" type="Animation" id=11]
 [ext_resource path="res://Resources/Animations/Scroll.tres" type="Animation" id=12]
 [ext_resource path="res://Resources/Animations/Descroll.tres" type="Animation" id=13]
+[ext_resource path="res://Nodes/SettingsTray.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 230, 10 )
@@ -94,6 +95,9 @@ centered = false
 
 [node name="Board" parent="." instance=ExtResource( 2 )]
 position = Vector2( 19, 132 )
+
+[node name="SettingsTray" parent="." instance=ExtResource( 14 )]
+position = Vector2( 0, 20 )
 
 [node name="Bar" type="Area2D" parent="."]
 
