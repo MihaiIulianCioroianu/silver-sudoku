@@ -146,8 +146,9 @@ func CheckBoardValid():
 	if (checkResult.empty()):
 		pass
 	else:
-		for i in checkResult:
-			GetTile(i).FlashRed()
+		if checkSetting("realTimeCorrection"):
+			for i in checkResult:
+				GetTile(i).FlashRed()
 
 # SIGNAL CATCHERS
 func _on_tile_pressed(address):
@@ -158,3 +159,6 @@ func _on_tile_pressed(address):
 # SAVE BOARD LOCATION
 func saveBoardLocation():
 	get_parent().saveBoardLocation(sudokuID)
+
+func checkSetting(settingName):
+	return get_parent().settings[settingName]

@@ -89,6 +89,11 @@ CHECK={
  ]
 }
 
+[logging]
+
+file_logging/enable_file_logging=true
+file_logging/log_path="user://logs/silversudoku.log"
+
 [physics]
 
 common/enable_pause_aware_picking=true

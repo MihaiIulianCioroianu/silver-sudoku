@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Resources/Sprites/SettingSimpleOff.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Sprites/SettingSimpleOn.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/SimpleSwitch.gd" type="Script" id=3]
+[ext_resource path="res://Resources/Fonts/Arial.tres" type="DynamicFont" id=4]
+
+[node name="SimpleSwitch" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_right = 70.0
+margin_bottom = 24.0
+mouse_filter = 1
+toggle_mode = true
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 4.0
+margin_top = 5.0
+margin_right = 57.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 4 )
+align = 1
+valign = 1
+
+[connection signal="toggled" from="TextureButton" to="." method="_on_pressed"]
