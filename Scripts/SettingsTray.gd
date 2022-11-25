@@ -23,7 +23,11 @@ func _process(delta):
 	elif newPosition.y<minimumMovement:
 		newPosition.y = minimumMovement
 	position = newPosition
-	
+	if movement == Vector2.DOWN:
+		if get_global_mouse_position().y > position.y+25:
+			movement = Vector2.UP
+		elif get_global_mouse_position().y < position.y-85:
+			movement = Vector2.UP
 
 
 func _on_Area2D_mouse_entered():
@@ -31,4 +35,4 @@ func _on_Area2D_mouse_entered():
 
 
 func _on_Area2D_mouse_exited():
-	movement = Vector2.UP
+	pass

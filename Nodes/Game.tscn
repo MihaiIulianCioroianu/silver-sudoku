@@ -101,10 +101,6 @@ position = Vector2( 0, 20 )
 
 [node name="Bar" type="Area2D" parent="."]
 
-[node name="MouseBlocker" type="ColorRect" parent="Bar"]
-margin_right = 460.0
-margin_bottom = 20.0
-
 [node name="Sprite" type="Sprite" parent="Bar"]
 texture = ExtResource( 10 )
 centered = false
@@ -124,6 +120,10 @@ margin_left = 460.0
 margin_right = 480.0
 margin_bottom = 20.0
 texture_normal = ExtResource( 4 )
+
+[node name="TextureButton" type="TextureButton" parent="Bar"]
+margin_right = 460.0
+margin_bottom = 20.0
 
 [node name="BoardSelector" type="Sprite" parent="."]
 position = Vector2( 400, 630 )
@@ -168,5 +168,8 @@ anims/Scroll = ExtResource( 12 )
 [connection signal="input_event" from="Bar" to="." method="_on_Area2D_input_event"]
 [connection signal="pressed" from="Bar/CloseButton" to="." method="_on_CloseButton_pressed"]
 [connection signal="pressed" from="Bar/MinimizeButton" to="." method="_on_MinimizeButton_pressed"]
+[connection signal="button_down" from="Bar/TextureButton" to="." method="_on_barPressed_down"]
+[connection signal="button_up" from="Bar/TextureButton" to="." method="_on_barPressed_up"]
+[connection signal="pressed" from="Bar/TextureButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="BoardSelector/Previous" to="Board" method="PreviousBoard"]
 [connection signal="pressed" from="BoardSelector/Next" to="Board" method="NextBoard"]

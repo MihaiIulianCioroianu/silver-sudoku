@@ -19,12 +19,21 @@ texture = ExtResource( 2 )
 centered = false
 offset = Vector2( 0, -95 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="TestCheckBox" type="CheckBox" parent="."]
+margin_left = 18.0
+margin_top = -55.0
+margin_right = 122.0
+margin_bottom = -31.0
+mouse_filter = 1
+text = "AutoCorrect"
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( 2, -85, 2, -1, 420, -1, 420, 23, 498, 23, 498, -85 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
+[connection signal="mouse_entered" from="TestCheckBox" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]

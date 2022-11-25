@@ -59,18 +59,17 @@ func LoadBoards():
 	$Board.Refresh()
 
 # BAR VIEWPORT
-func _on_Area2D_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == 1 and event.is_pressed():
-			dragging = true
-			globalMousePosition = get_global_mouse_position()
-		elif event.button_index == 1 and not event.is_pressed():
-			dragging = false
-			if timeSinceLastBarClick < 0.5:
-				scrollWindow()
-				timeSinceLastBarClick = 1
-			else:
-				timeSinceLastBarClick = 0
+func _on_barPressed_down():
+	dragging = true
+	globalMousePosition = get_global_mouse_position()
+
+func _on_barPressed_up():
+	dragging = false
+	if timeSinceLastBarClick < 0.5:
+		scrollWindow()
+		timeSinceLastBarClick = 1
+	else:
+		timeSinceLastBarClick = 0
 
 # BAR BUTTONS
 func UpdateBoardNumber(numberToUpdate):
@@ -109,3 +108,4 @@ func loadBoardLocation():
 	$Board.sudokuID = f.get_var()
 	$Board.Refresh()
 	$Board.UpdateBoardNumberDisplay()
+
