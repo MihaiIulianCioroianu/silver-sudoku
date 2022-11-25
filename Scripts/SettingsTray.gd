@@ -9,6 +9,7 @@ var minimumMovement = 20
 var movement = Vector2.ZERO
 var speed = 150
 var newPosition = Vector2.ZERO
+signal settingChange(setting, value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,5 +35,5 @@ func _on_Area2D_mouse_entered():
 	movement = Vector2.DOWN
 
 
-func _on_Area2D_mouse_exited():
-	pass
+func settingChange(setting, value):
+	emit_signal("settingChange", setting, value)

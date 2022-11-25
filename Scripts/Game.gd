@@ -109,3 +109,7 @@ func loadBoardLocation():
 	$Board.Refresh()
 	$Board.UpdateBoardNumberDisplay()
 
+
+
+func _on_settingChange(setting, value):
+	settings[setting] = value

@@ -11,6 +11,7 @@ script = ExtResource( 3 )
 [node name="TextureButton" type="TextureButton" parent="."]
 margin_right = 70.0
 margin_bottom = 24.0
+mouse_filter = 1
 toggle_mode = true
 texture_normal = ExtResource( 1 )
 texture_pressed = ExtResource( 2 )

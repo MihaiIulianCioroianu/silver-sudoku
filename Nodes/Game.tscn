@@ -165,6 +165,7 @@ anims/FadeOut = ExtResource( 11 )
 anims/RESET = SubResource( 3 )
 anims/Scroll = ExtResource( 12 )
 
+[connection signal="settingChange" from="SettingsTray" to="." method="_on_settingChange"]
 [connection signal="input_event" from="Bar" to="." method="_on_Area2D_input_event"]
 [connection signal="pressed" from="Bar/CloseButton" to="." method="_on_CloseButton_pressed"]
 [connection signal="pressed" from="Bar/MinimizeButton" to="." method="_on_MinimizeButton_pressed"]
