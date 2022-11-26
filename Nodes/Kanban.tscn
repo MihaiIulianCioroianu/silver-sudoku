@@ -76,4 +76,6 @@
 
 [node name="Doing" type="Node" parent="."]
 
+[node name="Window Object" type="Node" parent="Doing"]
+
 [node name="Done" type="Node" parent="."]
