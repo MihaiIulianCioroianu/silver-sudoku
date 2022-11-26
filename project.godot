@@ -10,6 +10,21 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "Board",
+"language": "GDScript",
+"path": "res://Scripts/Board.gd"
+}, {
+"base": "Node",
+"class": "BoardLoader",
+"language": "GDScript",
+"path": "res://Scripts/BoardLoader.gd"
+}, {
+"base": "Node2D",
+"class": "Game",
+"language": "GDScript",
+"path": "res://Scripts/Game.gd"
+}, {
+"base": "Node",
 "class": "Message",
 "language": "GDScript",
 "path": "res://Scripts/Classes/Message.gd"
@@ -18,10 +33,49 @@ _global_script_classes=[ {
 "class": "Messages",
 "language": "GDScript",
 "path": "res://Scripts/Classes/Messages.gd"
+}, {
+"base": "Node2D",
+"class": "NumberTile",
+"language": "GDScript",
+"path": "res://Scripts/NumberTile.gd"
+}, {
+"base": "Node2D",
+"class": "ResizeableWindow",
+"language": "GDScript",
+"path": "res://Scripts/ResizeableWindow.gd"
+}, {
+"base": "Node2D",
+"class": "SettingsTray",
+"language": "GDScript",
+"path": "res://Scripts/SettingsTray.gd"
+}, {
+"base": "Node2D",
+"class": "SimpleSwitch",
+"language": "GDScript",
+"path": "res://Scripts/SimpleSwitch.gd"
+}, {
+"base": "Node",
+"class": "SudokuBoard",
+"language": "GDScript",
+"path": "res://Scripts/SudokuBoard.gd"
+}, {
+"base": "Node",
+"class": "SystemFunctions",
+"language": "GDScript",
+"path": "res://Scripts/SystemFunctions.gd"
 } ]
 _global_script_class_icons={
+"Board": "",
+"BoardLoader": "",
+"Game": "",
 "Message": "",
-"Messages": ""
+"Messages": "",
+"NumberTile": "",
+"ResizeableWindow": "",
+"SettingsTray": "",
+"SimpleSwitch": "",
+"SudokuBoard": "",
+"SystemFunctions": ""
 }
 
 [application]

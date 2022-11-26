@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name NumberTile
 
 # Declare member variables here. Examples:
 # var a = 2
