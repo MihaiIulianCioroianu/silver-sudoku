@@ -4,7 +4,7 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var maximumMovement = 105
+var maximumMovement = 50 # max 105
 var minimumMovement = 20
 var movement = Vector2.ZERO
 var speed = 150

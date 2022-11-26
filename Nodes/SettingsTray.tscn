@@ -30,12 +30,12 @@ polygon = PoolVector2Array( 2, -85, 2, -1, 420, -1, 420, 23, 498, 23, 498, -85 )
 [node name="Switches" type="Node2D" parent="."]
 
 [node name="SimpleSwitch" parent="Switches" instance=ExtResource( 4 )]
-position = Vector2( 28, -55 )
+position = Vector2( 12, -27 )
 settingName = "realTimeCorrection"
 label = "Auto-Correct"
 
 [node name="SimpleSwitch2" parent="Switches" instance=ExtResource( 4 )]
-position = Vector2( 106, -54 )
+position = Vector2( 83, -27 )
 settingName = "showAbout"
 label = "About"
 
