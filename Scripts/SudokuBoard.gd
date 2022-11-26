@@ -1,5 +1,5 @@
 extends "res://Scripts/SystemFunctions.gd"
-
+class_name SudokuBoard
 
 # Declare member variables here. Examples:
 # var a = 2

@@ -1,5 +1,5 @@
 extends "res://Scripts/SystemFunctions.gd"
-
+class_name Board
 
 # Declare member variables here. Examples:
 # var a = 2

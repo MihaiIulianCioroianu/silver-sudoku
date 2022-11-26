@@ -1,5 +1,5 @@
 extends Node
-
+class_name BoardLoader
 
 # Declare member variables here. Examples:
 # var a = 2
