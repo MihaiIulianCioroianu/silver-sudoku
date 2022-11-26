@@ -159,6 +159,13 @@ custom_fonts/font = ExtResource( 9 )
 text = "20772"
 align = 1
 
+[node name="InputBlock" type="CenterContainer" parent="."]
+visible = false
+margin_right = 563.0
+margin_bottom = 735.0
+
+[node name="MessageLayer" type="Node2D" parent="."]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Descroll = ExtResource( 13 )
 anims/FadeOut = ExtResource( 11 )

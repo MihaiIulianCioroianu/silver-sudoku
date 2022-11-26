@@ -9,6 +9,7 @@ export var currentSize = Vector2(41, 41)
 export var speed = 600
 export var lines = []
 const LINE = preload("res://Nodes/MessageWindowLine.tscn")
+signal onClosed
 var ins
 var linesNotInitialised = true
 
@@ -51,3 +52,7 @@ func resizeWindow(windowSize):
 	$VBoxContainer/HBoxContainer3/TextureButton2.rect_min_size.x = windowSize.x-40
 	$VBoxContainer.show()
 	$VBoxContainer2.show()
+
+func _close():
+	emit_signal("onClosed")
+	queue_free()

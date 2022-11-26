@@ -121,6 +121,7 @@ texture_normal = ExtResource( 9 )
 margin_right = 1.0
 margin_bottom = 10.0
 rect_clip_content = true
+mouse_filter = 2
 size_flags_horizontal = 2
 size_flags_vertical = 2
 custom_constants/separation = 0
@@ -131,3 +132,13 @@ margin_bottom = 10.0
 rect_min_size = Vector2( 0, 10 )
 autowrap = true
 clip_text = true
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton" to="." method="_close"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton2" to="." method="_close"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton3" to="." method="_close"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/TextureButton" to="." method="_close"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ColorRect" to="." method="_close"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/TextureButton2" to="." method="_close"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/TextureButton" to="." method="_close"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/TextureButton2" to="." method="_close"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/TextureButton3" to="." method="_close"]
