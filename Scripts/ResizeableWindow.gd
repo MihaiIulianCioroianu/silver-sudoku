@@ -6,7 +6,7 @@ extends Node2D
 # var b = "text"
 export var targetSize = Vector2(300, 500)
 export var currentSize = Vector2(41, 41)
-export var speed = 600
+export var speed = 1000
 export var lines = []
 const LINE = preload("res://Nodes/MessageWindowLine.tscn")
 signal onClosed
