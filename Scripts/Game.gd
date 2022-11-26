@@ -7,6 +7,7 @@ extends Node2D
 export var windowSize = 700
 const PAGESAVE = "user://PageLocation.uds"
 const RESWINDOW = preload("res://Nodes/ResizeableWindow.tscn")
+var _Messages = Messages.new()
 var windowSizeCheck = 700
 var monitoring = false
 var dragging = false
@@ -113,7 +114,10 @@ func loadBoardLocation():
 
 # SETTINGS
 func _on_settingChange(setting, value):
-	settings[setting] = value
+	if setting == "showAbout":
+		createMessage(_Messages.ABOUT)
+	else:
+		settings[setting] = value
 
 # UI
 func activateInputBlock():
@@ -122,15 +126,11 @@ func activateInputBlock():
 func deactivateInputBlock():
 	$InputBlock.visible = false
 
-func createMessage(message):
+func createMessage(message:Message):
 	activateInputBlock()
 	ins = RESWINDOW.instance()
 	ins.connect("onClosed", get_node("."), "deactivateInputBlock")
-	ins.targetSize = Vector2(300, 120)
-	ins.lines = [
-		"ABOUT",
-		"",
-		"Silver Sudoku",
-		"by Mihai Cioroianu 2022"
-	]
+	ins.targetSize = message.windowSize
+	ins.lines = message.lines
+	ins.position = (Vector2(500, 700)-message.windowSize)/2
 	$MessageLayer.add_child(ins)

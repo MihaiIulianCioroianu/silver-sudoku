@@ -27,11 +27,19 @@ offset = Vector2( 0, -95 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( 2, -85, 2, -1, 420, -1, 420, 23, 498, 23, 498, -85 )
 
-[node name="SimpleSwitch" parent="." instance=ExtResource( 4 )]
+[node name="Switches" type="Node2D" parent="."]
+
+[node name="SimpleSwitch" parent="Switches" instance=ExtResource( 4 )]
 position = Vector2( 28, -55 )
 settingName = "realTimeCorrection"
 label = "Auto-Correct"
 
+[node name="SimpleSwitch2" parent="Switches" instance=ExtResource( 4 )]
+position = Vector2( 106, -54 )
+settingName = "showAbout"
+label = "About"
+
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]
-[connection signal="settingChange" from="SimpleSwitch" to="." method="settingChange"]
+[connection signal="settingChange" from="Switches/SimpleSwitch" to="." method="settingChange"]
+[connection signal="settingChange" from="Switches/SimpleSwitch2" to="." method="settingChange"]
