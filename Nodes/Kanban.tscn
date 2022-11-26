@@ -1,0 +1,83 @@
+[gd_scene format=2]
+
+[node name="Kanban" type="Node"]
+
+[node name="ToDo" type="Node" parent="."]
+
+[node name="Hint Service" type="Node" parent="ToDo"]
+
+[node name="Limited Hints" type="Node" parent="ToDo/Hint Service"]
+
+[node name="Hints add Time" type="Node" parent="ToDo/Hint Service"]
+
+[node name="Level Maker" type="Node" parent="ToDo"]
+
+[node name="Unique Solution Detect" type="Node" parent="ToDo/Level Maker"]
+
+[node name="Available Numbers Display" type="Node" parent="ToDo"]
+
+[node name="Clear Board" type="Node" parent="ToDo"]
+
+[node name="Timer" type="Node" parent="ToDo"]
+
+[node name="Time Challenge" type="Node" parent="ToDo/Timer"]
+
+[node name="Undo" type="Node" parent="ToDo"]
+
+[node name="Redo" type="Node" parent="ToDo/Undo"]
+
+[node name="Number Wheel on Hold-Click" type="Node" parent="ToDo"]
+
+[node name="Universal Sudoku Object" type="Node" parent="ToDo"]
+
+[node name="Other Sudoku Types" type="Node" parent="ToDo/Universal Sudoku Object"]
+
+[node name="6x6" type="Node" parent="ToDo/Universal Sudoku Object/Other Sudoku Types"]
+
+[node name="4x4" type="Node" parent="ToDo/Universal Sudoku Object/Other Sudoku Types"]
+
+[node name="Killer Sudoku" type="Node" parent="ToDo/Universal Sudoku Object/Other Sudoku Types"]
+
+[node name="Greater Than" type="Node" parent="ToDo/Universal Sudoku Object/Other Sudoku Types"]
+
+[node name="Group Sum" type="Node" parent="ToDo/Universal Sudoku Object/Other Sudoku Types"]
+
+[node name="Hexadecimal" type="Node" parent="ToDo/Universal Sudoku Object/Other Sudoku Types"]
+
+[node name="Alternate Symbols" type="Node" parent="ToDo"]
+
+[node name="Number in Corner" type="Node" parent="ToDo/Alternate Symbols"]
+
+[node name="Alternate Controls (Select number then add)" type="Node" parent="ToDo"]
+
+[node name="Auto-Fill 8-9 lines" type="Node" parent="ToDo"]
+
+[node name="Rules" type="Node" parent="ToDo"]
+
+[node name="Level Generator" type="Node" parent="ToDo"]
+
+[node name="Difficulties" type="Node" parent="ToDo/Level Generator"]
+
+[node name="Block Duplicates" type="Node" parent="ToDo"]
+
+[node name="Pencil" type="Node" parent="ToDo"]
+
+[node name="Commit Pencil" type="Node" parent="ToDo/Pencil"]
+
+[node name="Tip of the Day" type="Node" parent="ToDo"]
+
+[node name="Progress Counter" type="Node" parent="ToDo"]
+
+[node name="Save Progress" type="Node" parent="ToDo"]
+
+[node name="About" type="Node" parent="ToDo"]
+
+[node name="Unique ID" type="Node" parent="ToDo"]
+
+[node name="Doing" type="Node" parent="."]
+
+[node name="Done" type="Node" parent="."]
+
+[node name="Window Object" type="Node" parent="Done"]
+
+[node name="Message Class" type="Node" parent="Done/Window Object"]

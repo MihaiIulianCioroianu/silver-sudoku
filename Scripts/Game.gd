@@ -6,12 +6,15 @@ extends Node2D
 # var b = "text"
 export var windowSize = 700
 const PAGESAVE = "user://PageLocation.uds"
+const RESWINDOW = preload("res://Nodes/ResizeableWindow.tscn")
+var _Messages = Messages.new()
 var windowSizeCheck = 700
 var monitoring = false
 var dragging = false
 var globalMousePosition
 var mousePositionDifference
 var f
+var ins
 var timeSinceLastBarClick = 0
 var windowScrolled = false
 var settings = {
@@ -109,7 +112,25 @@ func loadBoardLocation():
 	$Board.Refresh()
 	$Board.UpdateBoardNumberDisplay()
 
-
-
+# SETTINGS
 func _on_settingChange(setting, value):
-	settings[setting] = value
+	if setting == "showAbout":
+		createMessage(_Messages.ABOUT)
+	else:
+		settings[setting] = value
+
+# UI
+func activateInputBlock():
+	$InputBlock.visible = true
+
+func deactivateInputBlock():
+	$InputBlock.visible = false
+
+func createMessage(message:Message):
+	activateInputBlock()
+	ins = RESWINDOW.instance()
+	ins.connect("onClosed", get_node("."), "deactivateInputBlock")
+	ins.targetSize = message.windowSize
+	ins.lines = message.lines
+	ins.position = (Vector2(500, 700)-message.windowSize)/2
+	$MessageLayer.add_child(ins)

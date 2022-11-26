@@ -8,6 +8,22 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "Message",
+"language": "GDScript",
+"path": "res://Scripts/Classes/Message.gd"
+}, {
+"base": "Node",
+"class": "Messages",
+"language": "GDScript",
+"path": "res://Scripts/Classes/Messages.gd"
+} ]
+_global_script_class_icons={
+"Message": "",
+"Messages": ""
+}
+
 [application]
 
 config/name="Project Kakashi"
