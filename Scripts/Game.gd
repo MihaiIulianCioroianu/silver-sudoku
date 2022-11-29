@@ -108,8 +108,10 @@ func loadBoardLocation():
 	f = File.new()
 	f.open(PAGESAVE, File.READ)
 	f.seek(0)
-	if f.get_var() in range(0, 100000):
-		$Board.sudokuID = f.get_var()
+	var loadedPosition = f.get_var()
+	print(loadedPosition)
+	if loadedPosition in range(0, 100000):
+		$Board.sudokuID = loadedPosition
 	else:
 		$Board.sudokuID = 1
 	$Board.Refresh()
