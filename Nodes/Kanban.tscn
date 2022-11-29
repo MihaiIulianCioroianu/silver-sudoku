@@ -16,8 +16,6 @@
 
 [node name="Available Numbers Display" type="Node" parent="ToDo"]
 
-[node name="Clear Board" type="Node" parent="ToDo"]
-
 [node name="Timer" type="Node" parent="ToDo"]
 
 [node name="Time Challenge" type="Node" parent="ToDo/Timer"]
@@ -56,28 +54,30 @@
 
 [node name="About" type="Node" parent="ToDo"]
 
+[node name="Other Sudoku Types" type="Node" parent="ToDo"]
+
+[node name="6x6" type="Node" parent="ToDo/Other Sudoku Types"]
+
+[node name="4x4" type="Node" parent="ToDo/Other Sudoku Types"]
+
+[node name="Killer Sudoku" type="Node" parent="ToDo/Other Sudoku Types"]
+
+[node name="Greater Than" type="Node" parent="ToDo/Other Sudoku Types"]
+
+[node name="Group Sum" type="Node" parent="ToDo/Other Sudoku Types"]
+
+[node name="Hexadecimal" type="Node" parent="ToDo/Other Sudoku Types"]
+
 [node name="Unique ID" type="Node" parent="ToDo"]
 
 [node name="Doing" type="Node" parent="."]
-
-[node name="Universal Sudoku Object" type="Node" parent="Doing"]
-
-[node name="Other Sudoku Types" type="Node" parent="Doing/Universal Sudoku Object"]
-
-[node name="6x6" type="Node" parent="Doing/Universal Sudoku Object/Other Sudoku Types"]
-
-[node name="4x4" type="Node" parent="Doing/Universal Sudoku Object/Other Sudoku Types"]
-
-[node name="Killer Sudoku" type="Node" parent="Doing/Universal Sudoku Object/Other Sudoku Types"]
-
-[node name="Greater Than" type="Node" parent="Doing/Universal Sudoku Object/Other Sudoku Types"]
-
-[node name="Group Sum" type="Node" parent="Doing/Universal Sudoku Object/Other Sudoku Types"]
-
-[node name="Hexadecimal" type="Node" parent="Doing/Universal Sudoku Object/Other Sudoku Types"]
 
 [node name="Done" type="Node" parent="."]
 
 [node name="Window Object" type="Node" parent="Done"]
 
 [node name="Message Class" type="Node" parent="Done/Window Object"]
+
+[node name="Universal Sudoku Object" type="Node" parent="Done"]
+
+[node name="Clear Board" type="Node" parent="Done"]

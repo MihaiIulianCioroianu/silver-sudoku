@@ -47,8 +47,7 @@ func _input(event):
 	elif event.is_action_pressed("BACKSPACE"):
 		kinput = 0
 	elif event.is_action_pressed("RESET"):
-		CurrentSudoku().ResetBoard()
-		Refresh()
+		resetBoard()
 	elif event.is_action_pressed("CHECK"):
 		if CurrentSudoku().CheckBoardDone():
 			for i in range(81):
@@ -116,6 +115,10 @@ func Refresh():
 			else:
 				currentTile.unblock()
 			currentTile.SetNumber(currentBoard[line][column])
+
+func resetBoard():
+	CurrentSudoku().ResetBoard()
+	Refresh()
 
 # TILE GETTERS
 func GetTile(address):

@@ -109,7 +109,6 @@ func loadBoardLocation():
 	f.open(PAGESAVE, File.READ)
 	f.seek(0)
 	var loadedPosition = f.get_var()
-	print(loadedPosition)
 	if loadedPosition in range(0, 100000):
 		$Board.sudokuID = loadedPosition
 	else:
@@ -124,6 +123,8 @@ func _on_settingChange(setting, value):
 func _on_trayButtonPressed(setting):
 	if setting == "showAbout":
 		createMessage(_Messages.ABOUT)
+	if setting == "resetBoard":
+		$Board.resetBoard()
 
 # UI
 func activateInputBlock():
