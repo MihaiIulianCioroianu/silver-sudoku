@@ -1,5 +1,5 @@
-extends "res://Scripts/SystemFunctions.gd"
 
+extends "res://Scripts/SystemFunctions.gd"
 class_name Sudoku
 
 enum FORMAT {X9=9, X6=6, X4=4, HEX=16}
@@ -18,6 +18,27 @@ func _init(bid:int, bsudokuName:String, bformat:int, bdata):
 	data = DuplicateBoard(bdata)
 	modifiedData = DuplicateBoard(bdata)
 	timer = 0
+
+# TOSTRING
+func formatToString(formatCode):
+	match formatCode:
+		9:
+			return "9X9"
+		6:
+			return "6X6"
+		4:
+			return "4X4"
+		16:
+			return "HEX"
+
+func _to_string():
+	var stringToReturn = ""
+	stringToReturn += "Board ID "+str(id)+" "+"<<"+sudokuName+">>"+"\n"
+	stringToReturn += "Format: "+formatToString(format)+"\n"
+	if format == FORMAT.X9:
+		for i in modifiedData:
+			stringToReturn += str(i)+"\n"
+	return stringToReturn
 
 # BOARD CHECKS
 func CheckBoardDone():
