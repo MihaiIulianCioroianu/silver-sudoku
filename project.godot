@@ -50,6 +50,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/SettingsTray.gd"
 }, {
 "base": "Node2D",
+"class": "SimpleButton",
+"language": "GDScript",
+"path": "res://Scripts/SimpleButton.gd"
+}, {
+"base": "Node2D",
 "class": "SimpleSwitch",
 "language": "GDScript",
 "path": "res://Scripts/SimpleSwitch.gd"
@@ -73,6 +78,7 @@ _global_script_class_icons={
 "NumberTile": "",
 "ResizeableWindow": "",
 "SettingsTray": "",
+"SimpleButton": "",
 "SimpleSwitch": "",
 "SudokuBoard": "",
 "SystemFunctions": ""

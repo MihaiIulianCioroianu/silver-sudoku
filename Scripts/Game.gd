@@ -112,12 +112,13 @@ func loadBoardLocation():
 	$Board.Refresh()
 	$Board.UpdateBoardNumberDisplay()
 
-# SETTINGS
+# SETTINGS TRAY
 func _on_settingChange(setting, value):
+	settings[setting] = value
+
+func _on_trayButtonPressed(setting):
 	if setting == "showAbout":
 		createMessage(_Messages.ABOUT)
-	else:
-		settings[setting] = value
 
 # UI
 func activateInputBlock():
@@ -134,3 +135,4 @@ func createMessage(message:Message):
 	ins.lines = message.lines
 	ins.position = (Vector2(500, 700)-message.windowSize)/2
 	$MessageLayer.add_child(ins)
+
