@@ -28,22 +28,6 @@
 
 [node name="Number Wheel on Hold-Click" type="Node" parent="ToDo"]
 
-[node name="Universal Sudoku Object" type="Node" parent="ToDo"]
-
-[node name="Other Sudoku Types" type="Node" parent="ToDo/Universal Sudoku Object"]
-
-[node name="6x6" type="Node" parent="ToDo/Universal Sudoku Object/Other Sudoku Types"]
-
-[node name="4x4" type="Node" parent="ToDo/Universal Sudoku Object/Other Sudoku Types"]
-
-[node name="Killer Sudoku" type="Node" parent="ToDo/Universal Sudoku Object/Other Sudoku Types"]
-
-[node name="Greater Than" type="Node" parent="ToDo/Universal Sudoku Object/Other Sudoku Types"]
-
-[node name="Group Sum" type="Node" parent="ToDo/Universal Sudoku Object/Other Sudoku Types"]
-
-[node name="Hexadecimal" type="Node" parent="ToDo/Universal Sudoku Object/Other Sudoku Types"]
-
 [node name="Alternate Symbols" type="Node" parent="ToDo"]
 
 [node name="Number in Corner" type="Node" parent="ToDo/Alternate Symbols"]
@@ -58,7 +42,7 @@
 
 [node name="Difficulties" type="Node" parent="ToDo/Level Generator"]
 
-[node name="Block Duplicates" type="Node" parent="ToDo"]
+[node name="Block Incorrect Moves" type="Node" parent="ToDo"]
 
 [node name="Pencil" type="Node" parent="ToDo"]
 
@@ -75,6 +59,22 @@
 [node name="Unique ID" type="Node" parent="ToDo"]
 
 [node name="Doing" type="Node" parent="."]
+
+[node name="Universal Sudoku Object" type="Node" parent="Doing"]
+
+[node name="Other Sudoku Types" type="Node" parent="Doing/Universal Sudoku Object"]
+
+[node name="6x6" type="Node" parent="Doing/Universal Sudoku Object/Other Sudoku Types"]
+
+[node name="4x4" type="Node" parent="Doing/Universal Sudoku Object/Other Sudoku Types"]
+
+[node name="Killer Sudoku" type="Node" parent="Doing/Universal Sudoku Object/Other Sudoku Types"]
+
+[node name="Greater Than" type="Node" parent="Doing/Universal Sudoku Object/Other Sudoku Types"]
+
+[node name="Group Sum" type="Node" parent="Doing/Universal Sudoku Object/Other Sudoku Types"]
+
+[node name="Hexadecimal" type="Node" parent="Doing/Universal Sudoku Object/Other Sudoku Types"]
 
 [node name="Done" type="Node" parent="."]
 
