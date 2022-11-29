@@ -11,6 +11,7 @@ var ins
 var selected = Vector2(0, 0)
 var sudokuNewID = 0
 var sudokuID = 1
+var sudokuList = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,8 +47,7 @@ func _input(event):
 	elif event.is_action_pressed("BACKSPACE"):
 		kinput = 0
 	elif event.is_action_pressed("RESET"):
-		CurrentSudoku().ResetBoard()
-		Refresh()
+		resetBoard()
 	elif event.is_action_pressed("CHECK"):
 		if CurrentSudoku().CheckBoardDone():
 			for i in range(81):
@@ -68,12 +68,11 @@ func AddTestBoard():
 	$SudokuBoards.add_child(ins)
 	sudokuNewID += 1
 
+func dict2sudoku(dict):
+	return Sudoku.new(dict["id"], dict["sudokuName"], dict["format"], dict["data"])
+
 func LoadBoard(boardData):
-	var loadedTable = []
-	ins = SUDOKUBOARD.instance()
-	ins.name = "SudokuBoard"+str(sudokuNewID)
-	ins.originalBoard = DuplicateBoard(boardData)
-	$SudokuBoards.add_child(ins)
+	sudokuList.append(dict2sudoku(boardData))
 	sudokuNewID += 1
 
 # BOARD LOADING
@@ -117,6 +116,10 @@ func Refresh():
 				currentTile.unblock()
 			currentTile.SetNumber(currentBoard[line][column])
 
+func resetBoard():
+	CurrentSudoku().ResetBoard()
+	Refresh()
+
 # TILE GETTERS
 func GetTile(address):
 	return get_node("Tiles/NumberTile-"+str(address.x)+str(address.y))
@@ -125,7 +128,7 @@ func SelectedTile():
 	return get_node("Tiles/NumberTile-"+str(selected.x)+str(selected.y))
 
 func CurrentSudoku():
-	return get_node("SudokuBoards/SudokuBoard"+str(sudokuID))
+	return sudokuList[sudokuID]
 
 func CurrentBoard():
 	return CurrentSudoku().GetBoard()

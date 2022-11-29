@@ -50,17 +50,25 @@ var boardsToLoad = [
 		[8, 0, 0, 5, 0, 0, 0, 0, 2],
 	],
 ]
+var names = [
+	"",
+	"Parting River",
+	"Rising Hill",
+	"Jumping Shrimp",
+	"Crossroads"
+]
 var id = 1
 var f
-var boardData
+var sudoku
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in boardsToLoad:
-		boardData = ""
+		sudoku = Sudoku.new(id, names[id], Sudoku.FORMAT.X9, i)
+		print(sudoku)
 		f = File.new()
 		f.open("user://SudokuBoard"+str(id)+".sdk", File.WRITE)
-		f.store_var(i)
+		f.store_var(inst2dict(sudoku))
 		f.close()
 		id+=1
 

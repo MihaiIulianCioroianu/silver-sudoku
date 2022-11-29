@@ -108,16 +108,23 @@ func loadBoardLocation():
 	f = File.new()
 	f.open(PAGESAVE, File.READ)
 	f.seek(0)
-	$Board.sudokuID = f.get_var()
+	var loadedPosition = f.get_var()
+	if loadedPosition in range(0, 100000):
+		$Board.sudokuID = loadedPosition
+	else:
+		$Board.sudokuID = 1
 	$Board.Refresh()
 	$Board.UpdateBoardNumberDisplay()
 
-# SETTINGS
+# SETTINGS TRAY
 func _on_settingChange(setting, value):
+	settings[setting] = value
+
+func _on_trayButtonPressed(setting):
 	if setting == "showAbout":
 		createMessage(_Messages.ABOUT)
-	else:
-		settings[setting] = value
+	if setting == "resetBoard":
+		$Board.resetBoard()
 
 # UI
 func activateInputBlock():
@@ -134,3 +141,4 @@ func createMessage(message:Message):
 	ins.lines = message.lines
 	ins.position = (Vector2(500, 700)-message.windowSize)/2
 	$MessageLayer.add_child(ins)
+
