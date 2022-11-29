@@ -11,6 +11,7 @@ var ins
 var selected = Vector2(0, 0)
 var sudokuNewID = 0
 var sudokuID = 1
+var sudokuList = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -68,12 +69,11 @@ func AddTestBoard():
 	$SudokuBoards.add_child(ins)
 	sudokuNewID += 1
 
+func dict2sudoku(dict):
+	return Sudoku.new(dict["id"], dict["sudokuName"], dict["format"], dict["data"])
+
 func LoadBoard(boardData):
-	var loadedTable = []
-	ins = SUDOKUBOARD.instance()
-	ins.name = "SudokuBoard"+str(sudokuNewID)
-	ins.originalBoard = DuplicateBoard(boardData)
-	$SudokuBoards.add_child(ins)
+	sudokuList.append(dict2sudoku(boardData))
 	sudokuNewID += 1
 
 # BOARD LOADING
@@ -125,7 +125,7 @@ func SelectedTile():
 	return get_node("Tiles/NumberTile-"+str(selected.x)+str(selected.y))
 
 func CurrentSudoku():
-	return get_node("SudokuBoards/SudokuBoard"+str(sudokuID))
+	return sudokuList[sudokuID]
 
 func CurrentBoard():
 	return CurrentSudoku().GetBoard()

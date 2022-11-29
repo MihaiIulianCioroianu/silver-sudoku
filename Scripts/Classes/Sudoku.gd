@@ -19,6 +19,7 @@ func _init(bid:int, bsudokuName:String, bformat:int, bdata):
 	modifiedData = DuplicateBoard(bdata)
 	timer = 0
 
+
 # TOSTRING
 func formatToString(formatCode):
 	match formatCode:
@@ -64,7 +65,7 @@ func CheckBoardValidity():
 
 func CheckGroupValidity(group):
 	var symbolCounts = []
-	for i in range(0, format):
+	for i in range(0, format+1):
 		symbolCounts.append(0)
 	for i in group:
 		symbolCounts[i] += 1

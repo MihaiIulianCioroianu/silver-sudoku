@@ -108,7 +108,10 @@ func loadBoardLocation():
 	f = File.new()
 	f.open(PAGESAVE, File.READ)
 	f.seek(0)
-	$Board.sudokuID = f.get_var()
+	if f.get_var() in range(0, 100000):
+		$Board.sudokuID = f.get_var()
+	else:
+		$Board.sudokuID = 1
 	$Board.Refresh()
 	$Board.UpdateBoardNumberDisplay()
 
