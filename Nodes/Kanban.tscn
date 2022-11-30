@@ -16,14 +16,6 @@
 
 [node name="Available Numbers Display" type="Node" parent="ToDo"]
 
-[node name="Timer" type="Node" parent="ToDo"]
-
-[node name="Time Challenge" type="Node" parent="ToDo/Timer"]
-
-[node name="Undo" type="Node" parent="ToDo"]
-
-[node name="Redo" type="Node" parent="ToDo/Undo"]
-
 [node name="Number Wheel on Hold-Click" type="Node" parent="ToDo"]
 
 [node name="Alternate Symbols" type="Node" parent="ToDo"]
@@ -68,9 +60,17 @@
 
 [node name="Hexadecimal" type="Node" parent="ToDo/Other Sudoku Types"]
 
+[node name="Undo" type="Node" parent="ToDo"]
+
+[node name="Redo" type="Node" parent="ToDo/Undo"]
+
 [node name="Unique ID" type="Node" parent="ToDo"]
 
 [node name="Doing" type="Node" parent="."]
+
+[node name="Timer" type="Node" parent="Doing"]
+
+[node name="Time Challenge" type="Node" parent="Doing/Timer"]
 
 [node name="Done" type="Node" parent="."]
 
