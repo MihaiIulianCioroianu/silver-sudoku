@@ -20,8 +20,8 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	setTimerDisplay(advanceTime(delta))
 
 # INPUT EVENT
 func _input(event):
@@ -142,6 +142,23 @@ func UpdateTile(kinput):
 		SelectedTile().SetNumber(kinput)
 		CurrentSudoku().ChangeTile(selected, kinput)
 		CheckBoardValid()
+
+# TIMER
+func advanceTime(delta):
+	return CurrentSudoku().advanceTime(delta)
+
+func getTime():
+	return CurrentSudoku().getTime()
+
+func doubleDigit(number):
+	if number>=10:
+		return str(number)
+	else:
+		return "0"+str(number)
+
+func setTimerDisplay(timer):
+	timer = int(timer)
+	$Timer.text = doubleDigit(timer/3600)+":"+doubleDigit((timer%3600)/60)+":"+doubleDigit(timer%60)
 
 # CHECKER
 func CheckBoardValid():

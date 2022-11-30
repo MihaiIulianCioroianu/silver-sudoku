@@ -8,7 +8,7 @@ var sudokuName:String
 var format:int
 var data
 var modifiedData
-var timer:int
+var timer:float
 
 # BUILDER
 func _init(bid:int, bsudokuName:String, bformat:int, bdata):
@@ -18,7 +18,6 @@ func _init(bid:int, bsudokuName:String, bformat:int, bdata):
 	data = DuplicateBoard(bdata)
 	modifiedData = DuplicateBoard(bdata)
 	timer = 0
-
 
 # TOSTRING
 func formatToString(formatCode):
@@ -136,3 +135,11 @@ func ChangeTile(address, value):
 
 func ResetBoard():
 	modifiedData = DuplicateBoard(data)
+
+# TIMER
+func advanceTime(delta):
+	timer += delta
+	return timer
+
+func getTime():
+	return timer
