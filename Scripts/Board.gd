@@ -111,6 +111,7 @@ func AddTiles():
 func Refresh():
 	var currentTile
 	var currentBoard = CurrentBoard()
+	$Title.text = CurrentSudoku().getTitle()
 	for line in range(9):
 		for column in range(9):
 			currentTile = get_node("Tiles/NumberTile-"+str(line)+str(column))
@@ -164,7 +165,7 @@ func doubleDigit(number):
 
 func setTimerDisplay(timer):
 	timer = int(timer)
-	$Timer.text = doubleDigit(timer/3600)+":"+doubleDigit((timer%3600)/60)+":"+doubleDigit(timer%60)
+	$Timer.text = "Time: "+doubleDigit(timer/3600)+":"+doubleDigit((timer%3600)/60)+":"+doubleDigit(timer%60)
 
 # CHECKER
 func CheckBoardValid():

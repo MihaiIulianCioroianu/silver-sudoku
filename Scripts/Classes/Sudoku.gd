@@ -129,6 +129,9 @@ func GetBoard():
 func GetOriginalBoard():
 	return DuplicateBoard(data)
 
+func getTitle():
+	return sudokuName
+
 # LOADER/SAVER
 func UpdateBoard(newBoard):
 	modifiedData = newBoard
