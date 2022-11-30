@@ -8,6 +8,7 @@ class_name Board
 const NUMBERTILE = preload("res://Nodes/NumberTile.tscn")
 const SUDOKUBOARD = preload("res://Nodes/SudokuBoard.tscn")
 var ins
+var f
 var selected = Vector2(0, 0)
 var sudokuNewID = 0
 var sudokuID = 1
@@ -20,8 +21,8 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	setTimerDisplay(advanceTime(delta))
 
 # INPUT EVENT
 func _input(event):
@@ -69,7 +70,8 @@ func AddTestBoard():
 	sudokuNewID += 1
 
 func dict2sudoku(dict):
-	return Sudoku.new(dict["id"], dict["sudokuName"], dict["format"], dict["data"])
+	var sudokuToReturn = Sudoku.new(dict["id"], dict["sudokuName"], dict["format"], dict["data"], float(dict["timer"]), dict["modifiedData"])
+	return sudokuToReturn
 
 func LoadBoard(boardData):
 	sudokuList.append(dict2sudoku(boardData))
@@ -77,6 +79,7 @@ func LoadBoard(boardData):
 
 # BOARD LOADING
 func NextBoard():
+	saveBoard()
 	if sudokuID < sudokuNewID - 1:
 		sudokuID += 1
 		Refresh()
@@ -84,6 +87,7 @@ func NextBoard():
 		saveBoardLocation()
 
 func PreviousBoard():
+	saveBoard()
 	if sudokuID>0:
 		sudokuID -=1
 		Refresh()
@@ -107,6 +111,7 @@ func AddTiles():
 func Refresh():
 	var currentTile
 	var currentBoard = CurrentBoard()
+	$Title.text = CurrentSudoku().getTitle()
 	for line in range(9):
 		for column in range(9):
 			currentTile = get_node("Tiles/NumberTile-"+str(line)+str(column))
@@ -119,6 +124,7 @@ func Refresh():
 func resetBoard():
 	CurrentSudoku().ResetBoard()
 	Refresh()
+	saveBoard()
 
 # TILE GETTERS
 func GetTile(address):
@@ -138,10 +144,28 @@ func OriginalBoard():
 
 # TILE SETTERS
 func UpdateTile(kinput):
+	saveBoard()
 	if not OriginalBoard()[selected.x][selected.y]:
 		SelectedTile().SetNumber(kinput)
 		CurrentSudoku().ChangeTile(selected, kinput)
 		CheckBoardValid()
+
+# TIMER
+func advanceTime(delta):
+	return CurrentSudoku().advanceTime(delta)
+
+func getTime():
+	return CurrentSudoku().getTime()
+
+func doubleDigit(number):
+	if number>=10:
+		return str(number)
+	else:
+		return "0"+str(number)
+
+func setTimerDisplay(timer):
+	timer = int(timer)
+	$Timer.text = "Time: "+doubleDigit(timer/3600)+":"+doubleDigit((timer%3600)/60)+":"+doubleDigit(timer%60)
 
 # CHECKER
 func CheckBoardValid():
@@ -159,9 +183,15 @@ func _on_tile_pressed(address):
 	selected = address
 	GetTile(address).Activate()
 
-# SAVE BOARD LOCATION
+# SAVE BOARD INFO
 func saveBoardLocation():
 	get_parent().saveBoardLocation(sudokuID)
 
 func checkSetting(settingName):
 	return get_parent().settings[settingName]
+
+func saveBoard():
+	f = File.new()
+	f.open("user://SudokuBoard"+str(sudokuID+1)+".sdk", File.WRITE)
+	f.store_var(inst2dict(CurrentSudoku()))
+	f.close()

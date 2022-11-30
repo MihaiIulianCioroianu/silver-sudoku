@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Board.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Sprites/PlaceholderBoard.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Sprites/BoardBG.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Fonts/TitilliumWeb-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+use_mipmaps = true
+font_data = ExtResource( 4 )
 
 [node name="Board" type="Node2D"]
 script = ExtResource( 1 )
@@ -19,3 +24,21 @@ centered = false
 [node name="Tiles" type="Node2D" parent="."]
 
 [node name="SudokuBoards" type="Node" parent="."]
+
+[node name="Timer" type="Label" parent="."]
+margin_left = 5.0
+margin_top = -25.0
+margin_right = 115.0
+margin_bottom = 1.0
+rect_min_size = Vector2( 110, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "Time: 00:00:00"
+
+[node name="Title" type="Label" parent="."]
+margin_left = 110.0
+margin_top = -25.0
+margin_right = 220.0
+margin_bottom = 1.0
+rect_min_size = Vector2( 250, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "Board Title"
