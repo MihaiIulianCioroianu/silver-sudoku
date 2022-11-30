@@ -42,8 +42,6 @@
 
 [node name="Progress Counter" type="Node" parent="ToDo"]
 
-[node name="Save Progress" type="Node" parent="ToDo"]
-
 [node name="About" type="Node" parent="ToDo"]
 
 [node name="Other Sudoku Types" type="Node" parent="ToDo"]
@@ -60,6 +58,8 @@
 
 [node name="Hexadecimal" type="Node" parent="ToDo/Other Sudoku Types"]
 
+[node name="Time Challenge" type="Node" parent="ToDo"]
+
 [node name="Undo" type="Node" parent="ToDo"]
 
 [node name="Redo" type="Node" parent="ToDo/Undo"]
@@ -67,10 +67,6 @@
 [node name="Unique ID" type="Node" parent="ToDo"]
 
 [node name="Doing" type="Node" parent="."]
-
-[node name="Timer" type="Node" parent="Doing"]
-
-[node name="Time Challenge" type="Node" parent="Doing/Timer"]
 
 [node name="Done" type="Node" parent="."]
 
@@ -81,3 +77,7 @@
 [node name="Universal Sudoku Object" type="Node" parent="Done"]
 
 [node name="Clear Board" type="Node" parent="Done"]
+
+[node name="Save Progress" type="Node" parent="Done"]
+
+[node name="Timer" type="Node" parent="Done"]

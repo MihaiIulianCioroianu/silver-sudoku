@@ -30,7 +30,6 @@ func _ready():
 	if f.file_exists(PAGESAVE):
 		loadBoardLocation()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if windowSize != windowSizeCheck:

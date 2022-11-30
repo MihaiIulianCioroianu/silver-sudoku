@@ -8,6 +8,7 @@ class_name Board
 const NUMBERTILE = preload("res://Nodes/NumberTile.tscn")
 const SUDOKUBOARD = preload("res://Nodes/SudokuBoard.tscn")
 var ins
+var f
 var selected = Vector2(0, 0)
 var sudokuNewID = 0
 var sudokuID = 1
@@ -69,7 +70,8 @@ func AddTestBoard():
 	sudokuNewID += 1
 
 func dict2sudoku(dict):
-	return Sudoku.new(dict["id"], dict["sudokuName"], dict["format"], dict["data"])
+	var sudokuToReturn = Sudoku.new(dict["id"], dict["sudokuName"], dict["format"], dict["data"], float(dict["timer"]), dict["modifiedData"])
+	return sudokuToReturn
 
 func LoadBoard(boardData):
 	sudokuList.append(dict2sudoku(boardData))
@@ -77,6 +79,7 @@ func LoadBoard(boardData):
 
 # BOARD LOADING
 func NextBoard():
+	saveBoard()
 	if sudokuID < sudokuNewID - 1:
 		sudokuID += 1
 		Refresh()
@@ -84,6 +87,7 @@ func NextBoard():
 		saveBoardLocation()
 
 func PreviousBoard():
+	saveBoard()
 	if sudokuID>0:
 		sudokuID -=1
 		Refresh()
@@ -119,6 +123,7 @@ func Refresh():
 func resetBoard():
 	CurrentSudoku().ResetBoard()
 	Refresh()
+	saveBoard()
 
 # TILE GETTERS
 func GetTile(address):
@@ -138,6 +143,7 @@ func OriginalBoard():
 
 # TILE SETTERS
 func UpdateTile(kinput):
+	saveBoard()
 	if not OriginalBoard()[selected.x][selected.y]:
 		SelectedTile().SetNumber(kinput)
 		CurrentSudoku().ChangeTile(selected, kinput)
@@ -176,9 +182,15 @@ func _on_tile_pressed(address):
 	selected = address
 	GetTile(address).Activate()
 
-# SAVE BOARD LOCATION
+# SAVE BOARD INFO
 func saveBoardLocation():
 	get_parent().saveBoardLocation(sudokuID)
 
 func checkSetting(settingName):
 	return get_parent().settings[settingName]
+
+func saveBoard():
+	f = File.new()
+	f.open("user://SudokuBoard"+str(sudokuID+1)+".sdk", File.WRITE)
+	f.store_var(inst2dict(CurrentSudoku()))
+	f.close()

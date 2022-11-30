@@ -6,18 +6,20 @@ enum FORMAT {X9=9, X6=6, X4=4, HEX=16}
 var id:int
 var sudokuName:String
 var format:int
-var data
-var modifiedData
+var data = []
+var modifiedData = []
 var timer:float
 
 # BUILDER
-func _init(bid:int, bsudokuName:String, bformat:int, bdata):
+func _init(bid:int, bsudokuName:String, bformat:int, bdata, btimer:float = 0, bmodifiedData = []):
 	id = bid
 	sudokuName = bsudokuName
 	format = bformat
 	data = DuplicateBoard(bdata)
-	modifiedData = DuplicateBoard(bdata)
-	timer = 0
+	modifiedData = DuplicateBoard(bmodifiedData)
+	if modifiedData.empty():
+		modifiedData = DuplicateBoard(bdata)
+	timer = btimer
 
 # TOSTRING
 func formatToString(formatCode):
@@ -35,6 +37,7 @@ func _to_string():
 	var stringToReturn = ""
 	stringToReturn += "Board ID "+str(id)+" "+"<<"+sudokuName+">>"+"\n"
 	stringToReturn += "Format: "+formatToString(format)+"\n"
+	stringToReturn += "Timer: "+str(timer)+"\n"
 	if format == FORMAT.X9:
 		for i in modifiedData:
 			stringToReturn += str(i)+"\n"
@@ -135,6 +138,7 @@ func ChangeTile(address, value):
 
 func ResetBoard():
 	modifiedData = DuplicateBoard(data)
+	timer = 0
 
 # TIMER
 func advanceTime(delta):
