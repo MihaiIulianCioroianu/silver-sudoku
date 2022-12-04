@@ -23,8 +23,17 @@ func _ready():
 func CheckEmpty():
 	if number == null_value:
 		$Label.visible = false
+		$HintLabels.visible = true
 	else:
 		$Label.visible = true
+		$HintLabels.visible = false
+
+func SetHintLabels(numberSet):
+	for i in $HintLabels.get_children():
+		if int(i.name[9]) in numberSet:
+			i.visible = true
+		else:
+			i.visible = false
 
 func SetNumber(num):
 	number = num
@@ -52,7 +61,6 @@ func _on_Tile_pressed():
 	emit_signal("TilePressed", address)
 
 # BLOCKING
-
 func block():
 	blocked = true
 	$TextureButton.disabled = true
