@@ -120,11 +120,20 @@ func Refresh():
 			else:
 				currentTile.unblock()
 			currentTile.SetNumber(currentBoard[line][column])
+	refreshHintLabes()
 
 func resetBoard():
 	CurrentSudoku().ResetBoard()
 	Refresh()
 	saveBoard()
+
+func refreshHintLabes():
+	for i in range(0, 9):
+		for j in range(0, 9):
+			getHintLabels(Vector2(i, j))
+
+func getHintLabels(address):
+	GetTile(address).setHintLabels(CurrentSudoku().checkAvailableMoves(address))
 
 # TILE GETTERS
 func GetTile(address):
@@ -149,6 +158,7 @@ func UpdateTile(kinput):
 		SelectedTile().SetNumber(kinput)
 		CurrentSudoku().ChangeTile(selected, kinput)
 		CheckBoardValid()
+		Refresh()
 
 # TIMER
 func advanceTime(delta):

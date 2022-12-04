@@ -20,6 +20,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
+# DISPLAY LOGIC
 func CheckEmpty():
 	if number == null_value:
 		$Label.visible = false
@@ -28,7 +29,7 @@ func CheckEmpty():
 		$Label.visible = true
 		$HintLabels.visible = false
 
-func SetHintLabels(numberSet):
+func setHintLabels(numberSet):
 	for i in $HintLabels.get_children():
 		if int(i.name[9]) in numberSet:
 			i.visible = true

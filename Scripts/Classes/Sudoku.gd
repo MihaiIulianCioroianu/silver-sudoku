@@ -122,6 +122,22 @@ func FindDuplicates(group):
 						duplicatesFound.append(j)
 	return duplicatesFound
 
+func checkAvailableMoves(address):
+	var availableMoves = []
+	if format == FORMAT.X9:
+		if not modifiedData[address.x][address.y]:
+			var errorsFound = 0
+			for i in range (1, 10):
+				errorsFound = 0
+				ChangeTile(address, i)
+				errorsFound += CheckLineValidity(address.x).size()
+				errorsFound += CheckColumnValidity(address.y).size()
+				errorsFound += CheckSquareValidity(int(address.x/3), int(address.y/3)).size()
+				if errorsFound == 0:
+					availableMoves.append(i)
+			ChangeTile(address, 0)
+	return availableMoves
+
 # GETTER
 func GetBoard():
 	return DuplicateBoard(modifiedData)
