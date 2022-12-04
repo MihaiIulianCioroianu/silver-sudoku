@@ -31,6 +31,9 @@ func _process(delta):
 		elif get_global_mouse_position().y < position.y-85:
 			movement = Vector2.UP
 
+func refresh(settings):
+	for i in $Switches.get_children():
+		i.refresh(settings)
 
 func _on_Area2D_mouse_entered():
 	movement = Vector2.DOWN

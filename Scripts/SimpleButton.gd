@@ -17,6 +17,8 @@ func _ready():
 #func _process(delta):
 #	pass
 
+func refresh(settings):
+	pass
 
 func _on_pressed():
 	print("X")

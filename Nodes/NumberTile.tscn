@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Resources/Fonts/Titillium.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Resources/Sprites/NumberTile.png" type="Texture" id=2]
@@ -8,6 +8,12 @@
 [ext_resource path="res://Resources/Animations/Pulse.tres" type="Animation" id=6]
 [ext_resource path="res://Resources/Sprites/NumberTileMask.png" type="Texture" id=7]
 [ext_resource path="res://Resources/Sprites/NumberTileMaskB.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Fonts/TitilliumWeb-Regular.ttf" type="DynamicFontData" id=9]
+
+[sub_resource type="DynamicFont" id=2]
+size = 11
+use_mipmaps = true
+font_data = ExtResource( 9 )
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -59,7 +65,103 @@ script = ExtResource( 5 )
 texture = ExtResource( 2 )
 centered = false
 
+[node name="HintLabels" type="Node2D" parent="."]
+
+[node name="HintLabel1" type="Label" parent="HintLabels"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 18.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 2 )
+text = "1"
+align = 1
+
+[node name="HintLabel2" type="Label" parent="HintLabels"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 16.0
+margin_right = 34.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 2 )
+text = "2"
+align = 1
+
+[node name="HintLabel3" type="Label" parent="HintLabels"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 32.0
+margin_right = 50.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 2 )
+text = "3"
+align = 1
+
+[node name="HintLabel4" type="Label" parent="HintLabels"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_top = 16.0
+margin_right = 18.0
+margin_bottom = 34.0
+custom_fonts/font = SubResource( 2 )
+text = "4"
+align = 1
+
+[node name="HintLabel5" type="Label" parent="HintLabels"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 34.0
+margin_bottom = 34.0
+custom_fonts/font = SubResource( 2 )
+text = "5"
+align = 1
+
+[node name="HintLabel6" type="Label" parent="HintLabels"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 32.0
+margin_top = 16.0
+margin_right = 50.0
+margin_bottom = 34.0
+custom_fonts/font = SubResource( 2 )
+text = "6"
+align = 1
+
+[node name="HintLabel7" type="Label" parent="HintLabels"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_top = 32.0
+margin_right = 18.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 2 )
+text = "7"
+align = 1
+
+[node name="HintLabel8" type="Label" parent="HintLabels"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 34.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 2 )
+text = "8"
+align = 1
+
+[node name="HintLabel9" type="Label" parent="HintLabels"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 50.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 2 )
+text = "9"
+align = 1
+
 [node name="Label" type="Label" parent="."]
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 margin_right = 50.0
 margin_bottom = 50.0

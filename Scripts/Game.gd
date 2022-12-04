@@ -6,6 +6,7 @@ class_name Game
 # var b = "text"
 export var windowSize = 700
 const PAGESAVE = "user://PageLocation.uds"
+const SETTINGSAVE = "user://Settings.uds"
 const RESWINDOW = preload("res://Nodes/ResizeableWindow.tscn")
 var _Messages = Messages.new()
 var windowSizeCheck = 700
@@ -18,7 +19,8 @@ var ins
 var timeSinceLastBarClick = 0
 var windowScrolled = false
 var settings = {
-	"realTimeCorrection" : true
+	"realTimeCorrection" : true,
+	"hintLabels" : true
 	}
 
 
@@ -29,6 +31,8 @@ func _ready():
 	f = File.new()
 	if f.file_exists(PAGESAVE):
 		loadBoardLocation()
+	loadSettings()
+	refreshSettingsTray()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -115,15 +119,34 @@ func loadBoardLocation():
 	$Board.Refresh()
 	$Board.UpdateBoardNumberDisplay()
 
+func saveSettings():
+	f = File.new()
+	f.open(SETTINGSAVE, File.WRITE)
+	f.seek(0)
+	f.store_var(settings)
+
+func loadSettings():
+	f = File.new()
+	if f.file_exists(SETTINGSAVE):
+		f.open(SETTINGSAVE, File.READ)
+		f.seek(0)
+		settings = f.get_var()
+		$Board.Refresh()
+
 # SETTINGS TRAY
 func _on_settingChange(setting, value):
 	settings[setting] = value
+	$Board.Refresh()
+	saveSettings()
 
 func _on_trayButtonPressed(setting):
 	if setting == "showAbout":
 		createMessage(_Messages.ABOUT)
 	if setting == "resetBoard":
 		$Board.resetBoard()
+
+func refreshSettingsTray():
+	$SettingsTray.refresh(settings)
 
 # UI
 func activateInputBlock():

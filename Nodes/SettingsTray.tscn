@@ -35,18 +35,24 @@ position = Vector2( 12, -27 )
 settingName = "realTimeCorrection"
 label = "Auto-Correct"
 
-[node name="SimpleButton" parent="Switches" instance=ExtResource( 5 )]
+[node name="ShowAbout" parent="Switches" instance=ExtResource( 5 )]
 position = Vector2( 83, -27 )
 settingName = "showAbout"
 label = "About"
 
-[node name="SimpleButton2" parent="Switches" instance=ExtResource( 5 )]
+[node name="ResetBoard" parent="Switches" instance=ExtResource( 5 )]
 position = Vector2( 154, -27 )
 settingName = "resetBoard"
 label = "Reset"
 
+[node name="HintLabels" parent="Switches" instance=ExtResource( 4 )]
+position = Vector2( 225, -27 )
+settingName = "hintLabels"
+label = "Show Moves"
+
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]
 [connection signal="settingChange" from="Switches/RealTimeCorrections" to="." method="settingChange"]
-[connection signal="settingButton" from="Switches/SimpleButton" to="." method="buttonPressed"]
-[connection signal="settingButton" from="Switches/SimpleButton2" to="." method="buttonPressed"]
+[connection signal="settingButton" from="Switches/ShowAbout" to="." method="buttonPressed"]
+[connection signal="settingButton" from="Switches/ResetBoard" to="." method="buttonPressed"]
+[connection signal="settingChange" from="Switches/HintLabels" to="." method="settingChange"]
