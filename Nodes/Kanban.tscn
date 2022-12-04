@@ -64,8 +64,6 @@
 
 [node name="Doing" type="Node" parent="."]
 
-[node name="Available Numbers Display" type="Node" parent="Doing"]
-
 [node name="Done" type="Node" parent="."]
 
 [node name="Window Object" type="Node" parent="Done"]
@@ -81,3 +79,5 @@
 [node name="Timer" type="Node" parent="Done"]
 
 [node name="About" type="Node" parent="Done"]
+
+[node name="Available Numbers Display" type="Node" parent="Done"]
