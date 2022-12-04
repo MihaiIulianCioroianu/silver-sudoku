@@ -6,11 +6,13 @@ class_name SimpleSwitch
 # var b = "text"
 export var settingName = ""
 export var label = ""
+export var currentValue = true
 signal settingChange(setting, value)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Label.text = label
+	$TextureButton.set_pressed_no_signal(currentValue)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
