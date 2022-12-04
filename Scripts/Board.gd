@@ -120,7 +120,12 @@ func Refresh():
 			else:
 				currentTile.unblock()
 			currentTile.SetNumber(currentBoard[line][column])
-	refreshHintLabes()
+	if get_parent().settings["hintLabels"]:
+		enableHintLabels()
+		refreshHintLabes()
+	else:
+		disableHintLabels()
+		refreshHintLabes()
 
 func resetBoard():
 	CurrentSudoku().ResetBoard()
@@ -134,6 +139,16 @@ func refreshHintLabes():
 
 func getHintLabels(address):
 	GetTile(address).setHintLabels(CurrentSudoku().checkAvailableMoves(address))
+
+func enableHintLabels():
+	for i in range(0, 9):
+		for j in range(0, 9):
+			GetTile(Vector2(i, j)).enableHintLabel()
+
+func disableHintLabels():
+	for i in range(0, 9):
+		for j in range(0, 9):
+			GetTile(Vector2(i, j)).disableHintLabel()
 
 # TILE GETTERS
 func GetTile(address):

@@ -9,6 +9,7 @@ export var number = 0
 export var null_value = 0
 export var blocked = false
 var selected = false
+var hintLabel = true
 var address = Vector2(0, 0)
 
 # Called when the node enters the scene tree for the first time.
@@ -24,7 +25,7 @@ func _ready():
 func CheckEmpty():
 	if number == null_value:
 		$Label.visible = false
-		$HintLabels.visible = true
+		$HintLabels.visible = hintLabel
 	else:
 		$Label.visible = true
 		$HintLabels.visible = false
@@ -69,3 +70,12 @@ func block():
 func unblock():
 	blocked = false
 	$TextureButton.disabled = false
+
+# HINT LABEL
+func enableHintLabel():
+	hintLabel = true
+	CheckEmpty()
+
+func disableHintLabel():
+	hintLabel = false
+	CheckEmpty()

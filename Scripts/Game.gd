@@ -18,7 +18,8 @@ var ins
 var timeSinceLastBarClick = 0
 var windowScrolled = false
 var settings = {
-	"realTimeCorrection" : true
+	"realTimeCorrection" : true,
+	"hintLabels" : true
 	}
 
 
@@ -118,6 +119,7 @@ func loadBoardLocation():
 # SETTINGS TRAY
 func _on_settingChange(setting, value):
 	settings[setting] = value
+	$Board.Refresh()
 
 func _on_trayButtonPressed(setting):
 	if setting == "showAbout":
