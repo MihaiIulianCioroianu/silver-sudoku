@@ -14,8 +14,6 @@
 
 [node name="Unique Solution Detect" type="Node" parent="ToDo/Level Maker"]
 
-[node name="Available Numbers Display" type="Node" parent="ToDo"]
-
 [node name="Number Wheel on Hold-Click" type="Node" parent="ToDo"]
 
 [node name="Alternate Symbols" type="Node" parent="ToDo"]
@@ -42,8 +40,6 @@
 
 [node name="Progress Counter" type="Node" parent="ToDo"]
 
-[node name="About" type="Node" parent="ToDo"]
-
 [node name="Other Sudoku Types" type="Node" parent="ToDo"]
 
 [node name="6x6" type="Node" parent="ToDo/Other Sudoku Types"]
@@ -68,6 +64,8 @@
 
 [node name="Doing" type="Node" parent="."]
 
+[node name="Available Numbers Display" type="Node" parent="Doing"]
+
 [node name="Done" type="Node" parent="."]
 
 [node name="Window Object" type="Node" parent="Done"]
@@ -81,3 +79,5 @@
 [node name="Save Progress" type="Node" parent="Done"]
 
 [node name="Timer" type="Node" parent="Done"]
+
+[node name="About" type="Node" parent="Done"]
