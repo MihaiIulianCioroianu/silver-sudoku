@@ -118,7 +118,8 @@ rect_min_size = Vector2( 20, 20 )
 texture_normal = ExtResource( 9 )
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
-margin_right = 1.0
+margin_left = 5.0
+margin_right = 6.0
 margin_bottom = 10.0
 rect_clip_content = true
 mouse_filter = 2
