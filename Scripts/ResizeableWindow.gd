@@ -39,7 +39,7 @@ func loadLines():
 func resizeWindow(windowSize):
 	$VBoxContainer.hide()
 	$VBoxContainer2.hide()
-	$VBoxContainer2.rect_min_size = windowSize
+	$VBoxContainer2.rect_min_size.x = max(0, windowSize.x-10)
 	$VBoxContainer.rect_min_size = windowSize
 	$VBoxContainer/HBoxContainer.rect_min_size.x = windowSize.x
 	$VBoxContainer/HBoxContainer/TextureButton2.rect_min_size.x = windowSize.x-40

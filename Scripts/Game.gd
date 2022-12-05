@@ -123,6 +123,7 @@ func saveSettings():
 	f = File.new()
 	f.open(SETTINGSAVE, File.WRITE)
 	f.seek(0)
+	print(settings)
 	f.store_var(settings)
 
 func loadSettings():
@@ -130,7 +131,10 @@ func loadSettings():
 	if f.file_exists(SETTINGSAVE):
 		f.open(SETTINGSAVE, File.READ)
 		f.seek(0)
-		settings = f.get_var()
+		var settingsToSet = f.get_var()
+		print(settingsToSet)
+		if settingsToSet:
+			settings = settingsToSet
 		$Board.Refresh()
 
 # SETTINGS TRAY
@@ -142,8 +146,10 @@ func _on_settingChange(setting, value):
 func _on_trayButtonPressed(setting):
 	if setting == "showAbout":
 		createMessage(_Messages.ABOUT)
-	if setting == "resetBoard":
+	elif setting == "resetBoard":
 		$Board.resetBoard()
+	elif setting == "showRules":
+		createMessage(_Messages.RULES)
 
 func refreshSettingsTray():
 	$SettingsTray.refresh(settings)

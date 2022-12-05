@@ -24,8 +24,6 @@
 
 [node name="Auto-Fill 8-9 lines" type="Node" parent="ToDo"]
 
-[node name="Rules" type="Node" parent="ToDo"]
-
 [node name="Level Generator" type="Node" parent="ToDo"]
 
 [node name="Difficulties" type="Node" parent="ToDo/Level Generator"]
@@ -81,3 +79,5 @@
 [node name="About" type="Node" parent="Done"]
 
 [node name="Available Numbers Display" type="Node" parent="Done"]
+
+[node name="Rules" type="Node" parent="Done"]
