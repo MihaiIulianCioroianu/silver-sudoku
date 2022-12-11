@@ -176,9 +176,8 @@ func create_message(message:Message):
 	var ins
 	activate_input_block()
 	ins = RESIZEABLE_WINDOW.instance()
-	ins.connect("onClosed", get_node("."), "deactivate_input_block")
+	ins.connect("window_closed", get_node("."), "deactivate_input_block")
 	ins.target_size = message.window_size
 	ins.lines = message.lines
 	ins.position = (Vector2(500, 700)-message.window_size)/2
 	$MessageLayer.add_child(ins)
-

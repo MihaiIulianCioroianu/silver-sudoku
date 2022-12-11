@@ -73,7 +73,7 @@ tracks/4/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath(".:windowSize")
+tracks/5/path = NodePath(".:window_size")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -172,6 +172,8 @@ anims/FadeOut = ExtResource( 11 )
 anims/RESET = SubResource( 3 )
 anims/Scroll = ExtResource( 12 )
 
+[connection signal="button_pressed" from="SettingsTray" to="." method="_on_trayButtonPressed"]
+[connection signal="setting_change" from="SettingsTray" to="." method="_on_settingChange"]
 [connection signal="pressed" from="Bar/CloseButton" to="." method="_on_CloseButton_pressed"]
 [connection signal="pressed" from="Bar/MinimizeButton" to="." method="_on_MinimizeButton_pressed"]
 [connection signal="button_down" from="Bar/TextureButton" to="." method="_on_barPressed_down"]

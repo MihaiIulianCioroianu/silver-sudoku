@@ -40,7 +40,7 @@ position = Vector2( 83, -27 )
 setting_name = "show_about"
 label = "About"
 
-[node name="ShowAbout2" parent="Switches" instance=ExtResource( 5 )]
+[node name="ShowRules" parent="Switches" instance=ExtResource( 5 )]
 position = Vector2( 296, -27 )
 setting_name = "show_about"
 label = "Rules"
@@ -57,3 +57,8 @@ label = "Show Moves"
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]
+[connection signal="setting_change" from="Switches/RealTimeCorrections" to="." method="setting_change"]
+[connection signal="setting_button" from="Switches/ShowAbout" to="." method="button_pressed"]
+[connection signal="setting_button" from="Switches/ShowRules" to="." method="button_pressed"]
+[connection signal="setting_button" from="Switches/ResetBoard" to="." method="button_pressed"]
+[connection signal="setting_change" from="Switches/HintLabels" to="." method="setting_change"]
