@@ -1,10 +1,11 @@
+# MESSAGE
+class_name Message
 extends Node
 
-class_name Message
-
-var windowSize = Vector2(300, 50)
+# VARIABLES
+var window_size = Vector2(300, 50)
 var lines = []
 
 func _init(size:Vector2, lineset:PoolStringArray):
-	windowSize = size
+	window_size = size
 	lines = lineset

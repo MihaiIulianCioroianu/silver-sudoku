@@ -1,222 +1,221 @@
-extends "res://Scripts/SystemFunctions.gd"
+# BOARD
 class_name Board
+extends "res://Scripts/SystemFunctions.gd"
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-const NUMBERTILE = preload("res://Nodes/NumberTile.tscn")
-const SUDOKUBOARD = preload("res://Nodes/SudokuBoard.tscn")
-var ins
-var f
+# CONSTANTS
+const NUMBER_TILE = preload("res://Nodes/NumberTile.tscn")
+const SUDOKU_BOARD = preload("res://Nodes/SudokuBoard.tscn")
+# VARIABLES
 var selected = Vector2(0, 0)
-var sudokuNewID = 0
-var sudokuID = 1
-var sudokuList = []
+var sudoku_new_ID = 0
+var sudoku_ID = 1
+var sudoku_list = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	AddTiles()
-	UpdateBoardNumberDisplay()
-
+	add_tiles()
+	update_board_number_display()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	setTimerDisplay(advanceTime(delta))
+	set_timer_display(advance_time(delta))
 
 # INPUT EVENT
 func _input(event):
-	var kinput = -1;
+	var key_input = -1;
 	if event.is_action_pressed("1"):
-		kinput = 1
+		key_input = 1
 	elif event.is_action_pressed("2"):
-		kinput = 2
+		key_input = 2
 	elif event.is_action_pressed("3"):
-		kinput = 3
+		key_input = 3
 	elif event.is_action_pressed("4"):
-		kinput = 4
+		key_input = 4
 	elif event.is_action_pressed("5"):
-		kinput = 5
+		key_input = 5
 	elif event.is_action_pressed("6"):
-		kinput = 6
+		key_input = 6
 	elif event.is_action_pressed("7"):
-		kinput = 7
+		key_input = 7
 	elif event.is_action_pressed("8"):
-		kinput = 8
+		key_input = 8
 	elif event.is_action_pressed("9"):
-		kinput = 9
+		key_input = 9
 	elif event.is_action_pressed("BACKSPACE"):
-		kinput = 0
+		key_input = 0
 	elif event.is_action_pressed("RESET"):
-		resetBoard()
+		reset_board()
 	elif event.is_action_pressed("CHECK"):
-		if CurrentSudoku().CheckBoardDone():
+		if current_sudoku().check_board_done():
 			for i in range(81):
-				GetTile(Vector2(i%9, i/9)).FlashBlue()
+				get_tile(Vector2(i%9, i/9)).flash_blue()
 		else:
-			print("Nope")
+			pass
 	elif event.is_action_pressed("ui_left"):
-		PreviousBoard()
+		previous_board()
 	elif event.is_action_pressed("ui_right"):
-		NextBoard()
-	if (kinput in range(10)):
-		UpdateTile(kinput)
+		next_board()
+	if (key_input in range(10)):
+		update_tile(key_input)
 
 # BOARD ADDING
-func AddTestBoard():
-	ins = SUDOKUBOARD.instance()
+func add_test_board():
+	var ins
+	ins = SUDOKU_BOARD.instance()
 	ins.name = "SudokuBoard0"
 	$SudokuBoards.add_child(ins)
-	sudokuNewID += 1
+	sudoku_new_ID += 1
 
 func dict2sudoku(dict):
-	var sudokuToReturn = Sudoku.new(dict["id"], dict["sudokuName"], dict["format"], dict["data"], float(dict["timer"]), dict["modifiedData"])
-	return sudokuToReturn
+	var sudoku_to_return = Sudoku.new(dict["id"], dict["sudoku_name"], dict["format"], dict["data"], float(dict["timer"]), dict["modified_data"])
+	return sudoku_to_return
 
-func LoadBoard(boardData):
-	sudokuList.append(dict2sudoku(boardData))
-	sudokuNewID += 1
+func load_board(board_data):
+	sudoku_list.append(dict2sudoku(board_data))
+	sudoku_new_ID += 1
 
 # BOARD LOADING
-func NextBoard():
-	saveBoard()
-	if sudokuID < sudokuNewID - 1:
-		sudokuID += 1
-		Refresh()
-		UpdateBoardNumberDisplay()
-		saveBoardLocation()
+func next_board():
+	save_board()
+	if sudoku_ID < sudoku_new_ID - 1:
+		sudoku_ID += 1
+		refresh()
+		update_board_number_display()
+		save_board_location()
 
-func PreviousBoard():
-	saveBoard()
-	if sudokuID>0:
-		sudokuID -=1
-		Refresh()
-		UpdateBoardNumberDisplay()
-		saveBoardLocation()
+func previous_board():
+	save_board()
+	if sudoku_ID>0:
+		sudoku_ID -=1
+		refresh()
+		update_board_number_display()
+		save_board_location()
 
-func UpdateBoardNumberDisplay():
-	get_parent().UpdateBoardNumber(sudokuID)
+func update_board_number_display():
+	get_parent().update_board_number(sudoku_ID)
 
-func AddTiles():
+func add_tiles():
+	var ins
 	for i in range(81):
-		ins = NUMBERTILE.instance()
+		ins = NUMBER_TILE.instance()
 		ins.position.x = 3+(i%9)*50+3*((i%9)/3)
 		ins.position.y = 3+(i/9)*50+3*(i/27)
 		ins.address.x = i/9
 		ins.address.y = i%9
 		ins.name = "NumberTile-"+str(i/9)+str(i%9)
 		$Tiles.add_child(ins)
-		get_node("Tiles/NumberTile-"+str(i/9)+str(i%9)).connect("TilePressed", self, "_on_tile_pressed")
+		get_node("Tiles/NumberTile-"+str(i/9)+str(i%9)).connect("tile_pressed", self, "_on_tile_pressed")
 
-func Refresh():
-	var currentTile
-	var currentBoard = CurrentBoard()
-	$Title.text = CurrentSudoku().getTitle()
+func refresh():
+	var current_tile
+	var current_board = current_board()
+	$Title.text = current_sudoku().get_title()
 	for line in range(9):
 		for column in range(9):
-			currentTile = get_node("Tiles/NumberTile-"+str(line)+str(column))
-			if OriginalBoard()[line][column] != 0:
-				currentTile.block()
+			current_tile = get_node("Tiles/NumberTile-"+str(line)+str(column))
+			if original_board()[line][column] != 0:
+				current_tile.block()
 			else:
-				currentTile.unblock()
-			currentTile.SetNumber(currentBoard[line][column])
-	if get_parent().settings["hintLabels"]:
-		enableHintLabels()
-		refreshHintLabes()
+				current_tile.unblock()
+			current_tile.set_number(current_board[line][column])
+	if get_parent().settings["hint_labels"]:
+		enable_hint_labels()
+		refresh_hint_labels()
 	else:
-		disableHintLabels()
-		refreshHintLabes()
+		disable_hint_labels()
+		refresh_hint_labels()
 
-func resetBoard():
-	CurrentSudoku().ResetBoard()
-	Refresh()
-	saveBoard()
+func reset_board():
+	current_sudoku().reset_board()
+	refresh()
+	save_board()
 
-func refreshHintLabes():
+func refresh_hint_labels():
 	for i in range(0, 9):
 		for j in range(0, 9):
-			getHintLabels(Vector2(i, j))
+			get_hint_labels(Vector2(i, j))
 
-func getHintLabels(address):
-	GetTile(address).setHintLabels(CurrentSudoku().checkAvailableMoves(address))
+func get_hint_labels(address):
+	get_tile(address).set_hint_labels(current_sudoku().check_available_moves(address))
 
-func enableHintLabels():
+func enable_hint_labels():
 	for i in range(0, 9):
 		for j in range(0, 9):
-			GetTile(Vector2(i, j)).enableHintLabel()
+			get_tile(Vector2(i, j)).enable_hint_label()
 
-func disableHintLabels():
+func disable_hint_labels():
 	for i in range(0, 9):
 		for j in range(0, 9):
-			GetTile(Vector2(i, j)).disableHintLabel()
+			get_tile(Vector2(i, j)).disable_hint_label()
 
 # TILE GETTERS
-func GetTile(address):
+func get_tile(address):
 	return get_node("Tiles/NumberTile-"+str(address.x)+str(address.y))
 
-func SelectedTile():
+func selected_tile():
 	return get_node("Tiles/NumberTile-"+str(selected.x)+str(selected.y))
 
-func CurrentSudoku():
-	return sudokuList[sudokuID]
+func current_sudoku():
+	return sudoku_list[sudoku_ID]
 
-func CurrentBoard():
-	return CurrentSudoku().GetBoard()
+func current_board():
+	return current_sudoku().get_board()
 
-func OriginalBoard():
-	return CurrentSudoku().GetOriginalBoard()
+func original_board():
+	return current_sudoku().get_original_board()
 
 # TILE SETTERS
-func UpdateTile(kinput):
-	saveBoard()
-	if not OriginalBoard()[selected.x][selected.y]:
-		SelectedTile().SetNumber(kinput)
-		CurrentSudoku().ChangeTile(selected, kinput)
-		CheckBoardValid()
-		Refresh()
+func update_tile(key_input):
+	if not original_board()[selected.x][selected.y]:
+		selected_tile().set_number(key_input)
+		current_sudoku().change_tile(selected, key_input)
+		check_board_valid()
+		refresh()
+	save_board()
 
 # TIMER
-func advanceTime(delta):
-	return CurrentSudoku().advanceTime(delta)
+func advance_time(delta):
+	return current_sudoku().advance_time(delta)
 
-func getTime():
-	return CurrentSudoku().getTime()
+func get_time():
+	return current_sudoku().get_time()
 
-func doubleDigit(number):
+func double_digit(number):
 	if number>=10:
 		return str(number)
 	else:
 		return "0"+str(number)
 
-func setTimerDisplay(timer):
+func set_timer_display(timer):
 	timer = int(timer)
-	$Timer.text = "Time: "+doubleDigit(timer/3600)+":"+doubleDigit((timer%3600)/60)+":"+doubleDigit(timer%60)
+	$Timer.text = "Time: "+double_digit(timer/3600)+":"+double_digit((timer%3600)/60)+":"+double_digit(timer%60)
 
 # CHECKER
-func CheckBoardValid():
-	var checkResult = CurrentSudoku().CheckBoardValidity()
-	if (checkResult.empty()):
+func check_board_valid():
+	var check_result = current_sudoku().check_board_validity()
+	if (check_result.empty()):
 		pass
 	else:
-		if checkSetting("realTimeCorrection"):
-			for i in checkResult:
-				GetTile(i).FlashRed()
+		if check_setting("real_time_correction"):
+			for i in check_result:
+				get_tile(i).flash_red()
 
 # SIGNAL CATCHERS
 func _on_tile_pressed(address):
-	SelectedTile().Deactivate()
+	selected_tile().deactivate()
 	selected = address
-	GetTile(address).Activate()
+	get_tile(address).activate()
 
 # SAVE BOARD INFO
-func saveBoardLocation():
-	get_parent().saveBoardLocation(sudokuID)
+func save_board_location():
+	get_parent().save_board_location(sudoku_ID)
 
-func checkSetting(settingName):
-	return get_parent().settings[settingName]
+func check_setting(setting_name):
+	return get_parent().settings[setting_name]
 
-func saveBoard():
+func save_board():
+	var f
 	f = File.new()
-	f.open("user://SudokuBoard"+str(sudokuID+1)+".sdk", File.WRITE)
-	f.store_var(inst2dict(CurrentSudoku()))
+	f.open("user://SudokuBoard"+str(sudoku_ID+1)+".sdk", File.WRITE)
+	f.store_var(inst2dict(current_sudoku()))
 	f.close()

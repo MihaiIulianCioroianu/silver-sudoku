@@ -1,15 +1,14 @@
+# SUDOKU OBJECT TESTER (DEPRECATED)
+class_name SudokuObjectTester
 extends Node
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var testObject1
+# VARIABLES
+var test_object
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	testObject1 = Sudoku.new(1001, 
-	"TestObject1", 
+	test_object = Sudoku.new(1001, 
+	"test_object", 
 	Sudoku.FORMAT.X9, 
 	[
 		[7, 0, 0, 3, 6, 0, 0, 1, 0],
@@ -23,11 +22,11 @@ func _ready():
 		[0, 4, 0, 0, 8, 3, 0, 0, 2],
 	]
 	)
-	print(testObject1)
-	testObject1.ChangeTile(Vector2(0, 0), 8)
-	testObject1.ChangeTile(Vector2(0, 1), 1)
-	print(testObject1)
-	print(testObject1.CheckBoardValidity())
+	print(test_object)
+	test_object.ChangeTile(Vector2(0, 0), 8)
+	test_object.ChangeTile(Vector2(0, 1), 1)
+	print(test_object)
+	print(test_object.CheckBoardValidity())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

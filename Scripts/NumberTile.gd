@@ -1,66 +1,62 @@
-extends Node2D
+# NUMBER TILE
 class_name NumberTile
+extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-signal TilePressed
+# SIGNALS
+signal tile_pressed
+# EXPORTED VARIABLES
 export var number = 0
 export var null_value = 0
 export var blocked = false
+# VARIABLES
 var selected = false
-var hintLabel = true
+var hint_label = true
 var address = Vector2(0, 0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	CheckEmpty()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	check_empty()
 
 # DISPLAY LOGIC
-func CheckEmpty():
+func check_empty():
 	if number == null_value:
 		$Label.visible = false
-		$HintLabels.visible = hintLabel
+		$HintLabels.visible = hint_label
 	else:
 		$Label.visible = true
 		$HintLabels.visible = false
 
-func setHintLabels(numberSet):
+func set_hint_labels(number_set):
 	for i in $HintLabels.get_children():
-		if int(i.name[9]) in numberSet:
+		if int(i.name[9]) in number_set:
 			i.visible = true
 		else:
 			i.visible = false
 
-func SetNumber(num):
-	number = num
-	$Label.text = str(num)
-	CheckEmpty()
+func set_number(new_number):
+	number = new_number
+	$Label.text = str(number)
+	check_empty()
 
 # ANIMATIONS
-func FlashRed():
+func flash_red():
 	$AnimationPlayer.play("FlashRed")
 
-func FlashBlue():
+func flash_blue():
 	$AnimationPlayer.play("FlashBlue")
 
 #SELECTION
-func Activate():
+func activate():
 	selected = true
 	$AnimationPlayer.play("Pulse")
 
-func Deactivate():
+func deactivate():
 	selected = false
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("RESET")
 
 func _on_Tile_pressed():
-	emit_signal("TilePressed", address)
+	emit_signal("tile_pressed", address)
 
 # BLOCKING
 func block():
@@ -72,10 +68,10 @@ func unblock():
 	$TextureButton.disabled = false
 
 # HINT LABEL
-func enableHintLabel():
-	hintLabel = true
-	CheckEmpty()
+func enable_hint_label():
+	hint_label = true
+	check_empty()
 
-func disableHintLabel():
-	hintLabel = false
-	CheckEmpty()
+func disable_hint_label():
+	hint_label = false
+	check_empty()

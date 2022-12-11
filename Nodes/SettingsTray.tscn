@@ -32,33 +32,33 @@ polygon = PoolVector2Array( 2, -85, 2, -1, 420, -1, 420, 23, 498, 23, 498, -85 )
 
 [node name="RealTimeCorrections" parent="Switches" instance=ExtResource( 4 )]
 position = Vector2( 12, -27 )
-settingName = "realTimeCorrection"
+setting_name = "real_time_correction"
 label = "Auto-Correct"
 
 [node name="ShowAbout" parent="Switches" instance=ExtResource( 5 )]
 position = Vector2( 83, -27 )
-settingName = "showAbout"
+setting_name = "show_about"
 label = "About"
 
-[node name="ShowAbout2" parent="Switches" instance=ExtResource( 5 )]
+[node name="ShowRules" parent="Switches" instance=ExtResource( 5 )]
 position = Vector2( 296, -27 )
-settingName = "showRules"
+setting_name = "show_about"
 label = "Rules"
 
 [node name="ResetBoard" parent="Switches" instance=ExtResource( 5 )]
 position = Vector2( 154, -27 )
-settingName = "resetBoard"
+setting_name = "reset_board"
 label = "Reset"
 
 [node name="HintLabels" parent="Switches" instance=ExtResource( 4 )]
 position = Vector2( 225, -27 )
-settingName = "hintLabels"
+setting_name = "hint_labels"
 label = "Show Moves"
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]
-[connection signal="settingChange" from="Switches/RealTimeCorrections" to="." method="settingChange"]
-[connection signal="settingButton" from="Switches/ShowAbout" to="." method="buttonPressed"]
-[connection signal="settingButton" from="Switches/ShowAbout2" to="." method="buttonPressed"]
-[connection signal="settingButton" from="Switches/ResetBoard" to="." method="buttonPressed"]
-[connection signal="settingChange" from="Switches/HintLabels" to="." method="settingChange"]
+[connection signal="setting_change" from="Switches/RealTimeCorrections" to="." method="setting_change"]
+[connection signal="setting_button" from="Switches/ShowAbout" to="." method="button_pressed"]
+[connection signal="setting_button" from="Switches/ShowRules" to="." method="button_pressed"]
+[connection signal="setting_button" from="Switches/ResetBoard" to="." method="button_pressed"]
+[connection signal="setting_change" from="Switches/HintLabels" to="." method="setting_change"]

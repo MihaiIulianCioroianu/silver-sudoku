@@ -1,10 +1,9 @@
-extends Node
+# BOARD LOADER
 class_name BoardLoader
+extends Node
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var boardsToLoad = [
+# CONSTANTS
+const BOARDS = [
 	[
 		[7, 0, 0, 3, 6, 0, 0, 1, 0],
 		[1, 0, 0, 0, 5, 0, 9, 0, 0],
@@ -50,29 +49,26 @@ var boardsToLoad = [
 		[8, 0, 0, 5, 0, 0, 0, 0, 2],
 	],
 ]
-var names = [
+const NAMES = [
 	"",
 	"Parting River",
 	"Rising Hill",
 	"Jumping Shrimp",
 	"Crossroads"
 ]
+# VARIABLES
 var id = 1
-var f
-var sudoku
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for i in boardsToLoad:
-		sudoku = Sudoku.new(id, names[id], Sudoku.FORMAT.X9, i)
+	var f
+	var sudoku
+	for i in BOARDS:
+		sudoku = Sudoku.new(id, NAMES[id], Sudoku.FORMAT.X9, i)
 		print(sudoku)
 		f = File.new()
 		f.open("user://SudokuBoard"+str(id)+".sdk", File.WRITE)
 		f.store_var(inst2dict(sudoku))
 		f.close()
 		id+=1
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	get_parent().load_boards()
