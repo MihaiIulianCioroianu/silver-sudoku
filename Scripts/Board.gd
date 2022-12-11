@@ -46,11 +46,7 @@ func _input(event):
 	elif event.is_action_pressed("RESET"):
 		reset_board()
 	elif event.is_action_pressed("CHECK"):
-		if current_sudoku().check_board_done():
-			for i in range(81):
-				get_tile(Vector2(i%9, i/9)).flash_blue()
-		else:
-			pass
+		check_board_done()
 	elif event.is_action_pressed("ui_left"):
 		previous_board()
 	elif event.is_action_pressed("ui_right"):
@@ -67,7 +63,11 @@ func add_test_board():
 	sudoku_new_ID += 1
 
 func dict2sudoku(dict):
-	var sudoku_to_return = Sudoku.new(dict["id"], dict["sudoku_name"], dict["format"], dict["data"], float(dict["timer"]), dict["modified_data"])
+	var sudoku_to_return
+	if "complete" in dict:
+		sudoku_to_return = Sudoku.new(dict["id"], dict["sudoku_name"], dict["format"], dict["data"], float(dict["timer"]), dict["modified_data"], bool(dict["complete"]))
+	else:
+		sudoku_to_return = Sudoku.new(dict["id"], dict["sudoku_name"], dict["format"], dict["data"], float(dict["timer"]), dict["modified_data"])
 	return sudoku_to_return
 
 func load_board(board_data):
@@ -166,11 +166,14 @@ func original_board():
 
 # TILE SETTERS
 func update_tile(key_input):
+	var error_number
 	if not original_board()[selected.x][selected.y]:
 		selected_tile().set_number(key_input)
 		current_sudoku().change_tile(selected, key_input)
-		check_board_valid()
+		error_number = check_board_valid()
 		refresh()
+	if error_number == 0:
+		check_board_done()
 	save_board()
 
 # TIMER
@@ -191,14 +194,21 @@ func set_timer_display(timer):
 	$Timer.text = "Time: "+double_digit(timer/3600)+":"+double_digit((timer%3600)/60)+":"+double_digit(timer%60)
 
 # CHECKER
+func check_board_done():
+	if current_sudoku().check_board_done():
+		current_sudoku().set_complete()
+		for i in range(81):
+			get_tile(Vector2(i%9, i/9)).flash_blue()
+
 func check_board_valid():
 	var check_result = current_sudoku().check_board_validity()
 	if (check_result.empty()):
-		pass
+		return 0
 	else:
 		if check_setting("real_time_correction"):
 			for i in check_result:
 				get_tile(i).flash_red()
+			return check_result.size()
 
 # SIGNAL CATCHERS
 func _on_tile_pressed(address):
