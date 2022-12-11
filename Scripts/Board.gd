@@ -166,12 +166,12 @@ func original_board():
 
 # TILE SETTERS
 func update_tile(key_input):
-	save_board()
 	if not original_board()[selected.x][selected.y]:
 		selected_tile().set_number(key_input)
 		current_sudoku().change_tile(selected, key_input)
 		check_board_valid()
 		refresh()
+	save_board()
 
 # TIMER
 func advance_time(delta):
