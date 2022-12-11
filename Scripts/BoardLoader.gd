@@ -71,6 +71,7 @@ func _ready():
 		f.store_var(inst2dict(sudoku))
 		f.close()
 		id+=1
+	get_parent().loadBoards()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

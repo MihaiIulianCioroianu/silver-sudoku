@@ -8,6 +8,7 @@ export var windowSize = 700
 const PAGESAVE = "user://PageLocation.uds"
 const SETTINGSAVE = "user://Settings.uds"
 const RESWINDOW = preload("res://Nodes/ResizeableWindow.tscn")
+const LEVELLOADER = preload("res://Nodes/BoardLoader.tscn")
 var _Messages = Messages.new()
 var windowSizeCheck = 700
 var monitoring = false
@@ -27,7 +28,7 @@ var settings = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	LoadBoards()
+	loadBoards()
 	f = File.new()
 	if f.file_exists(PAGESAVE):
 		loadBoardLocation()
@@ -43,26 +44,6 @@ func _process(delta):
 	if dragging:
 		mousePositionDifference = globalMousePosition - get_global_mouse_position()
 		OS.set_window_position(OS.get_window_position() - mousePositionDifference)
-
-func LoadBoards():
-	var files = []
-	var dir = Directory.new()
-	dir.open("user://")
-	dir.list_dir_begin()
-	while true:
-		var file = dir.get_next()
-		if file == "":
-			break
-		elif file.ends_with(".sdk"):
-			files.append(file)
-	dir.list_dir_end()
-	for i in files:
-		f = File.new()
-		f.open("user://"+i, File.READ)
-		f.seek(0)
-		$Board.LoadBoard(f.get_var())
-		f.close()
-	$Board.Refresh()
 
 # BAR VIEWPORT
 func _on_barPressed_down():
@@ -101,6 +82,29 @@ func scrollWindow():
 		$AnimationPlayer.play("Descroll")
 
 # SAVES
+func loadBoards():
+	var files = []
+	var dir = Directory.new()
+	dir.open("user://")
+	dir.list_dir_begin()
+	while true:
+		var file = dir.get_next()
+		if file == "":
+			break
+		elif file.ends_with(".sdk"):
+			files.append(file)
+	dir.list_dir_end()
+	if files.size() < 1:
+		ins = LEVELLOADER.instance()
+		add_child(ins)
+	for i in files:
+		f = File.new()
+		f.open("user://"+i, File.READ)
+		f.seek(0)
+		$Board.LoadBoard(f.get_var())
+		f.close()
+	$Board.Refresh()
+
 func saveBoardLocation(sudokuID):
 	f = File.new()
 	f.open(PAGESAVE, File.WRITE)
