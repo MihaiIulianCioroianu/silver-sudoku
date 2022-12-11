@@ -178,5 +178,5 @@ anims/Scroll = ExtResource( 12 )
 [connection signal="pressed" from="Bar/MinimizeButton" to="." method="_on_MinimizeButton_pressed"]
 [connection signal="button_down" from="Bar/TextureButton" to="." method="_on_barPressed_down"]
 [connection signal="button_up" from="Bar/TextureButton" to="." method="_on_barPressed_up"]
-[connection signal="pressed" from="BoardSelector/Previous" to="Board" method="PreviousBoard"]
-[connection signal="pressed" from="BoardSelector/Next" to="Board" method="NextBoard"]
+[connection signal="pressed" from="BoardSelector/Previous" to="Board" method="previous_board"]
+[connection signal="pressed" from="BoardSelector/Next" to="Board" method="next_board"]
