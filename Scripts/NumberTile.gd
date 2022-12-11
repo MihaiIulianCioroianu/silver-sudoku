@@ -33,7 +33,8 @@ func set_hint_labels(number_set):
 		else:
 			i.visible = false
 
-func set_number(number):
+func set_number(new_number):
+	number = new_number
 	$Label.text = str(number)
 	check_empty()
 
