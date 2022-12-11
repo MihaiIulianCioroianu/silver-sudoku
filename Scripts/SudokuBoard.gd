@@ -1,25 +1,18 @@
-extends "res://Scripts/SystemFunctions.gd"
+# SUDOKU BOARD (DEPRECATED)
 class_name SudokuBoard
+extends "res://Scripts/SystemFunctions.gd"
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+# VARIABLES
 var board = []
-var originalBoard = []
-
+var original_board = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	board = DuplicateBoard(originalBoard)
-	#InitialiseCleanBoard()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	board = duplicate_board(original_board)
 
 # BOARD INITIALISATION
-func InitialiseCleanBoard():
-	originalBoard = [
+func initialise_clean_board():
+	original_board = [
 		[0, 9, 0, 0, 0, 0, 3, 7, 5],
 		[0, 0, 0, 1, 0, 7, 4, 0, 6],
 		[6, 0, 7, 0, 9, 5, 1, 2, 8],
@@ -30,10 +23,10 @@ func InitialiseCleanBoard():
 		[0, 0, 5, 7, 1, 4, 9, 6, 2],
 		[0, 0, 1, 6, 5, 3, 8, 4, 7],
 		]
-	board = DuplicateBoard(originalBoard)
+	board = duplicate_board(original_board)
 
 # BOARD CHECKS
-func CheckBoardDone():
+func check_board_done():
 	return (CheckBoardCompleteness() and (CheckBoardValidity().empty()))
 
 func CheckBoardCompleteness():
@@ -106,10 +99,10 @@ func FindDuplicates(go9):
 
 # GETTER
 func GetBoard():
-	return DuplicateBoard(board)
+	return duplicate_board(board)
 
-func GetOriginalBoard():
-	return DuplicateBoard(originalBoard)
+func Getoriginal_board():
+	return duplicate_board(original_board)
 
 # LOADER/SAVER
 func UpdateBoard(newBoard):
@@ -119,5 +112,5 @@ func ChangeTile(address, value):
 	board[address.x][address.y] = value
 
 func ResetBoard():
-	board = DuplicateBoard(originalBoard)
+	board = duplicate_board(original_board)
 
