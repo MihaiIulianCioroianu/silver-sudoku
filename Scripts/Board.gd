@@ -196,7 +196,7 @@ func check_board_valid():
 	if (check_result.empty()):
 		pass
 	else:
-		if check_setting("real_time_collection"):
+		if check_setting("real_time_correction"):
 			for i in check_result:
 				get_tile(i).flash_red()
 
