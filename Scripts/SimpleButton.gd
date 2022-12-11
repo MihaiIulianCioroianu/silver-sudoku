@@ -1,25 +1,19 @@
-extends Node2D
+# SIMPLE BUTTON
 class_name SimpleButton
+extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-export var settingName = ""
+# SIGNALS
+signal setting_button(setting)
+# EXPORTED VARIABLES
+export var setting_name = ""
 export var label = ""
-signal settingButton(setting)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Label.text = label
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 func refresh(settings):
 	pass
 
 func _on_pressed():
-	print("X")
-	emit_signal("settingButton", settingName)
+	emit_signal("setting_button", setting_name)

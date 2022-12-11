@@ -1,25 +1,21 @@
-extends Node2D
+# SIMPLE SWITCH
 class_name SimpleSwitch
+extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-export var settingName = ""
+# SIGNALS
+signal setting_change(setting, value)
+# EXPORTED VARIABLES
+export var setting_name = ""
 export var label = ""
-export var currentValue = true
-signal settingChange(setting, value)
+export var current_value = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Label.text = label
-	$TextureButton.set_pressed_no_signal(currentValue)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	$TextureButton.set_pressed_no_signal(current_value)
 
 func refresh(settings):
-	$TextureButton.set_pressed_no_signal(settings[settingName])
+	$TextureButton.set_pressed_no_signal(settings[setting_name])
 
 func _on_pressed(button_pressed):
-	emit_signal("settingChange", settingName, button_pressed)
+	emit_signal("setting_change", setting_name, button_pressed)

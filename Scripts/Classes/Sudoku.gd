@@ -1,29 +1,31 @@
-
-extends "res://Scripts/SystemFunctions.gd"
+# SUDOKU UNIVERSAL OBJECT
 class_name Sudoku
+extends "res://Scripts/SystemFunctions.gd"
 
+# ENUMS
 enum FORMAT {X9=9, X6=6, X4=4, HEX=16}
+# VARIABLES
 var id:int
-var sudokuName:String
+var sudoku_name:String
 var format:int
 var data = []
-var modifiedData = []
+var modified_data = []
 var timer:float
 
 # BUILDER
-func _init(bid:int, bsudokuName:String, bformat:int, bdata, btimer:float = 0, bmodifiedData = []):
+func _init(bid:int, bsudoku_name:String, bformat:int, bdata, btimer:float = 0, bmodified_data = []):
 	id = bid
-	sudokuName = bsudokuName
+	sudoku_name = bsudoku_name
 	format = bformat
-	data = DuplicateBoard(bdata)
-	modifiedData = DuplicateBoard(bmodifiedData)
-	if modifiedData.empty():
-		modifiedData = DuplicateBoard(bdata)
+	data = duplicate_board(bdata)
+	modified_data = duplicate_board(bmodified_data)
+	if modified_data.empty():
+		modified_data = duplicate_board(bdata)
 	timer = btimer
 
 # TOSTRING
-func formatToString(formatCode):
-	match formatCode:
+func format2string(format_code):
+	match format_code:
 		9:
 			return "9X9"
 		6:
@@ -34,135 +36,138 @@ func formatToString(formatCode):
 			return "HEX"
 
 func _to_string():
-	var stringToReturn = ""
-	stringToReturn += "Board ID "+str(id)+" "+"<<"+sudokuName+">>"+"\n"
-	stringToReturn += "Format: "+formatToString(format)+"\n"
-	stringToReturn += "Timer: "+str(timer)+"\n"
+	var string_to_return = ""
+	string_to_return += "Board ID "+str(id)+" "+"<<"+sudoku_name+">>"+"\n"
+	string_to_return += "Format: "+format2string(format)+"\n"
+	string_to_return += "Timer: "+str(timer)+"\n"
 	if format == FORMAT.X9:
-		for i in modifiedData:
-			stringToReturn += str(i)+"\n"
-	return stringToReturn
+		for i in modified_data:
+			string_to_return += str(i)+"\n"
+	return string_to_return
 
 # BOARD CHECKS
-func CheckBoardDone():
-	return (CheckBoardCompleteness() and (CheckBoardValidity().empty()))
+func check_board_done():
+	if check_board_completeness():
+		return check_board_validity().empty()
+	else:
+		return false
 
-func CheckBoardCompleteness():
+func check_board_completeness():
 	if format in [FORMAT.X9, FORMAT.X6, FORMAT.X4, FORMAT.HEX]:
-		for i in modifiedData:
+		for i in modified_data:
 			if 0 in i:
 				return false
 		return true
 	return false
 
-func CheckBoardValidity():
-	var checkResult = []
+func check_board_validity():
+	var check_result = []
 	if format == FORMAT.X9:
 		for i in range(9):
-			checkResult.append_array(CheckLineValidity(i))
-			checkResult.append_array(CheckColumnValidity(i))
-			checkResult.append_array(CheckSquareValidity(i/3, i%3))
-		return checkResult
-	return checkResult
+			check_result.append_array(check_line_validity(i))
+			check_result.append_array(check_column_validity(i))
+			check_result.append_array(check_square_validity(Vector2(i/3, i%3)))
+		return check_result
+	return check_result
 
-func CheckGroupValidity(group):
-	var symbolCounts = []
+func check_group_validity(group):
+	var symbol_counts = []
 	for i in range(0, format+1):
-		symbolCounts.append(0)
+		symbol_counts.append(0)
 	for i in group:
-		symbolCounts[i] += 1
-	symbolCounts[0] = 0
-	for i in symbolCounts:
+		symbol_counts[i] += 1
+	symbol_counts[0] = 0
+	for i in symbol_counts:
 		if i>1:
 			return false
 	return true
 
-func CheckLineValidity(lineNumber):
-	var checkResult = []
-	if CheckGroupValidity(modifiedData[lineNumber]):
+func check_line_validity(line_number):
+	var check_result = []
+	if check_group_validity(modified_data[line_number]):
 		pass
 	else:
-		for i in FindDuplicates(modifiedData[lineNumber]):
-			checkResult.append(Vector2(lineNumber, i))
-	return checkResult
+		for i in find_duplicates(modified_data[line_number]):
+			check_result.append(Vector2(line_number, i))
+	return check_result
 
-func CheckColumnValidity(columnNumber):
+func check_column_validity(column_number):
 	var column = []
-	for i in modifiedData:
-		column.append(i[columnNumber])
-	var checkResult = []
-	if CheckGroupValidity(column):
+	for i in modified_data:
+		column.append(i[column_number])
+	var check_result = []
+	if check_group_validity(column):
 		pass
 	else:
-		for i in FindDuplicates(column):
-			checkResult.append(Vector2(i, columnNumber))
-	return checkResult
+		for i in find_duplicates(column):
+			check_result.append(Vector2(i, column_number))
+	return check_result
 
-func CheckSquareValidity(squareX, squareY):
-	var checkResult = []
+func check_square_validity(square_address):
+	var check_result = []
 	var square = []
 	if format == FORMAT.X9:
-		for i in range(squareX*3, squareX*3+3):
-			for j in range(squareY*3, squareY*3+3):
-				square.append(modifiedData[i][j])
-		if CheckGroupValidity(square):
+		for i in range(square_address.x*3, square_address.x*3+3):
+			for j in range(square_address.y*3, square_address.y*3+3):
+				square.append(modified_data[i][j])
+		if check_group_validity(square):
 			pass
 		else:
-			for i in FindDuplicates(square):
-				checkResult.append(Vector2(squareX*3+i/3, squareY*3+i%3))
-	return checkResult
+			for i in find_duplicates(square):
+				check_result.append(Vector2(square_address.x*3+i/3, square_address.y*3+i%3))
+	return check_result
 
-func FindDuplicates(group):
-	var duplicatesFound = []
+func find_duplicates(group):
+	var duplicates_found = []
 	for i in group:
 		if i:
 			if group.count(i)>1:
 				for j in range(group.size()):
 					if group[j] == i:
-						duplicatesFound.append(j)
-	return duplicatesFound
+						duplicates_found.append(j)
+	return duplicates_found
 
-func checkAvailableMoves(address):
-	var availableMoves = []
+func check_available_moves(address):
+	var available_moves = []
 	if format == FORMAT.X9:
-		if not modifiedData[address.x][address.y]:
-			var errorsFound = 0
+		if not modified_data[address.x][address.y]:
+			var errors_found = 0
 			for i in range (1, 10):
-				errorsFound = 0
-				ChangeTile(address, i)
-				errorsFound += CheckLineValidity(address.x).size()
-				errorsFound += CheckColumnValidity(address.y).size()
-				errorsFound += CheckSquareValidity(int(address.x/3), int(address.y/3)).size()
-				if errorsFound == 0:
-					availableMoves.append(i)
-			ChangeTile(address, 0)
-	return availableMoves
+				errors_found = 0
+				change_tile(address, i)
+				errors_found += check_line_validity(address.x).size()
+				errors_found += check_column_validity(address.y).size()
+				errors_found += check_square_validity(Vector2(int(address.x/3), int(address.y/3))).size()
+				if errors_found == 0:
+					available_moves.append(i)
+			change_tile(address, 0)
+	return available_moves
 
 # GETTER
-func GetBoard():
-	return DuplicateBoard(modifiedData)
+func get_board():
+	return duplicate_board(modified_data)
 
-func GetOriginalBoard():
-	return DuplicateBoard(data)
+func get_original_board():
+	return duplicate_board(data)
 
-func getTitle():
-	return sudokuName
+func get_title():
+	return sudoku_name
 
 # LOADER/SAVER
-func UpdateBoard(newBoard):
-	modifiedData = newBoard
+func update_board(new_board):
+	modified_data = new_board
 
-func ChangeTile(address, value):
-	modifiedData[address.x][address.y] = value
+func change_tile(address, value):
+	modified_data[address.x][address.y] = value
 
-func ResetBoard():
-	modifiedData = DuplicateBoard(data)
+func reset_board():
+	modified_data = duplicate_board(data)
 	timer = 0
 
 # TIMER
-func advanceTime(delta):
+func advance_time(delta):
 	timer += delta
 	return timer
 
-func getTime():
+func get_time():
 	return timer

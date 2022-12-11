@@ -1,16 +1,16 @@
-extends Node2D
+# STTINGS TRAY
 class_name SettingsTray
+extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var maximumMovement = 50 # max 105
-var minimumMovement = 20
+# SIGNALS
+signal setting_change(setting, value)
+signal button_pressed(setting)
+# VARIABLES
+var maximum_movement = 50 # max 105
+var minimum_movement = 20
 var movement = Vector2.ZERO
 var speed = 150
-var newPosition = Vector2.ZERO
-signal settingChange(setting, value)
-signal buttonPressed(setting)
+var new_position = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,12 +19,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	newPosition = position+(movement*speed)*delta
-	if newPosition.y>maximumMovement:
-		newPosition.y = maximumMovement
-	elif newPosition.y<minimumMovement:
-		newPosition.y = minimumMovement
-	position = newPosition
+	new_position = position+(movement*speed)*delta
+	if new_position.y>maximum_movement:
+		new_position.y = maximum_movement
+	elif new_position.y<minimum_movement:
+		new_position.y = minimum_movement
+	position = new_position
 	if movement == Vector2.DOWN:
 		if get_global_mouse_position().y > position.y+25:
 			movement = Vector2.UP
@@ -39,9 +39,9 @@ func _on_Area2D_mouse_entered():
 	movement = Vector2.DOWN
 
 
-func settingChange(setting, value):
-	emit_signal("settingChange", setting, value)
+func setting_change(setting, value):
+	emit_signal("setting_change", setting, value)
 
 
-func buttonPressed(setting):
-	emit_signal("buttonPressed", setting)
+func button_pressed(setting):
+	emit_signal("button_pressed", setting)

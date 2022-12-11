@@ -1,22 +1,9 @@
-extends Node
+# SYSTEM FUNCTIONS
 class_name SystemFunctions
+extends Node
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-func DuplicateBoard(board):
-	var newBoard = []
+func duplicate_board(board):
+	var new_board = []
 	for i in board:
-		newBoard.append(i.duplicate())
-	return newBoard
+		new_board.append(i.duplicate())
+	return new_board
