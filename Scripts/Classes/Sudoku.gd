@@ -11,9 +11,10 @@ var format:int
 var data = []
 var modified_data = []
 var timer:float
+var complete:bool
 
 # BUILDER
-func _init(bid:int, bsudoku_name:String, bformat:int, bdata, btimer:float = 0, bmodified_data = []):
+func _init(bid:int, bsudoku_name:String, bformat:int, bdata, btimer:float = 0, bmodified_data = [], bcomplete = false):
 	id = bid
 	sudoku_name = bsudoku_name
 	format = bformat
@@ -22,6 +23,7 @@ func _init(bid:int, bsudoku_name:String, bformat:int, bdata, btimer:float = 0, b
 	if modified_data.empty():
 		modified_data = duplicate_board(bdata)
 	timer = btimer
+	complete = bcomplete
 
 # TOSTRING
 func format2string(format_code):
@@ -143,6 +145,9 @@ func check_available_moves(address):
 			change_tile(address, 0)
 	return available_moves
 
+func set_complete():
+	complete = true
+
 # GETTER
 func get_board():
 	return duplicate_board(modified_data)
@@ -158,15 +163,19 @@ func update_board(new_board):
 	modified_data = new_board
 
 func change_tile(address, value):
+	if complete and (modified_data[address.x][address.y] != value):
+		complete = false
 	modified_data[address.x][address.y] = value
 
 func reset_board():
 	modified_data = duplicate_board(data)
 	timer = 0
+	complete = false
 
 # TIMER
 func advance_time(delta):
-	timer += delta
+	if not complete:
+		timer += delta
 	return timer
 
 func get_time():
