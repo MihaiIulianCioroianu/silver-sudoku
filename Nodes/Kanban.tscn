@@ -54,13 +54,15 @@
 
 [node name="Time Challenge" type="Node" parent="ToDo"]
 
-[node name="Undo" type="Node" parent="ToDo"]
-
-[node name="Redo" type="Node" parent="ToDo/Undo"]
-
 [node name="Unique ID" type="Node" parent="ToDo"]
 
 [node name="Doing" type="Node" parent="."]
+
+[node name="Undo" type="Node" parent="Doing"]
+
+[node name="Redo" type="Node" parent="Doing/Undo"]
+
+[node name="Explained Shortcuts" type="Node" parent="Doing"]
 
 [node name="Done" type="Node" parent="."]
 

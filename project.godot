@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "BoardLoader",
 "language": "GDScript",
-"path": "res://Scripts/BoardLoader.gd"
+"path": "res://Scripts/Utility/BoardLoader.gd"
 }, {
 "base": "Node2D",
 "class": "Game",
@@ -72,7 +72,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "SudokuObjectTester",
 "language": "GDScript",
-"path": "res://Scripts/SudokuObjectTester.gd"
+"path": "res://Scripts/Utility/SudokuObjectTester.gd"
 }, {
 "base": "Node",
 "class": "SystemFunctions",
