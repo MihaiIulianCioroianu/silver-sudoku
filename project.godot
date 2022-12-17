@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/BoardLoader.gd"
 }, {
+"base": "SystemFunctions",
+"class": "Clock",
+"language": "GDScript",
+"path": "res://Scripts/Clock.gd"
+}, {
 "base": "Node2D",
 "class": "Game",
 "language": "GDScript",
@@ -104,6 +109,7 @@ _global_script_class_icons={
 "ActionHistoryObjectTester": "",
 "Board": "",
 "BoardLoader": "",
+"Clock": "",
 "Game": "",
 "Message": "",
 "Messages": "",

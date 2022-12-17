@@ -193,12 +193,6 @@ func advance_time(delta):
 func get_time():
 	return current_sudoku().get_time()
 
-func double_digit(number):
-	if number>=10:
-		return str(number)
-	else:
-		return "0"+str(number)
-
 func set_timer_display(timer):
 	timer = int(timer)
 	$Timer.text = "Time: "+double_digit(timer/3600)+":"+double_digit((timer%3600)/60)+":"+double_digit(timer%60)
