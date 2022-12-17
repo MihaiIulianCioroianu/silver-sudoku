@@ -12,18 +12,23 @@ var data = []
 var modified_data = []
 var timer:float
 var complete:bool
+var history:ActionHistory
 
 # BUILDER
-func _init(bid:int, bsudoku_name:String, bformat:int, bdata, btimer:float = 0, bmodified_data = [], bcomplete = false):
-	id = bid
-	sudoku_name = bsudoku_name
-	format = bformat
-	data = duplicate_board(bdata)
-	modified_data = duplicate_board(bmodified_data)
+func _init(_id:int, _sudoku_name:String, _format:int, _data, _history:ActionHistory, _timer:float = 0, _modified_data = [], _complete = false):
+	id = _id
+	sudoku_name = _sudoku_name
+	format = _format
+	data = duplicate_board(_data)
+	modified_data = duplicate_board(_modified_data)
 	if modified_data.empty():
-		modified_data = duplicate_board(bdata)
-	timer = btimer
-	complete = bcomplete
+		modified_data = duplicate_board(_data)
+	timer = _timer
+	complete = _complete
+	if _history == null:
+		history = ActionHistory.new(SimpleSudokuAction.new(Vector2(0, 0), data[0][0], data[0][0]))
+	else:
+		history = _history
 
 # TOSTRING
 func format2string(format_code):
