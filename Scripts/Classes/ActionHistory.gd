@@ -49,3 +49,16 @@ func redo():
 func get_current_action():
 	return history[pointer]
 
+
+# TOSTRING
+func _to_string():
+	var string_to_return = ""
+	string_to_return += "History:\n"
+	for i in range(0, history.size()):
+		string_to_return += str(history[i])
+		if i == pointer:
+			string_to_return += " <--"
+		string_to_return += "\n"
+	string_to_return += "Current:\n"
+	string_to_return += str(history[pointer])
+	return string_to_return

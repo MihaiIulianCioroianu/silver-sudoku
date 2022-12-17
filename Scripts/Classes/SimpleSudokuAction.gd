@@ -24,5 +24,6 @@ func _ready():
 	pass
 
 
-#func _process(delta):
-#	pass
+# TOSTRING
+func _to_string():
+	return "ADR:"+str(address)+" PRV:"+str(previous_value)+" ACT:"+str(actual_value)
