@@ -6,7 +6,7 @@ extends Node2D
 signal setting_change(setting, value)
 signal button_pressed(setting)
 # VARIABLES
-var maximum_movement = 50 # max 105
+var maximum_movement = 75 # max 105
 var minimum_movement = 20
 var movement = Vector2.ZERO
 var speed = 150

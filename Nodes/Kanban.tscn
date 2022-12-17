@@ -60,6 +60,8 @@
 
 [node name="Rebuild Save System" type="Node" parent="ToDo"]
 
+[node name="Pause" type="Node" parent="ToDo"]
+
 [node name="Doing" type="Node" parent="."]
 
 [node name="Undo" type="Node" parent="Doing"]

@@ -41,19 +41,34 @@ setting_name = "show_about"
 label = "About"
 
 [node name="ShowRules" parent="Switches" instance=ExtResource( 5 )]
-position = Vector2( 296, -27 )
+position = Vector2( 83, -52 )
 setting_name = "show_about"
 label = "Rules"
 
 [node name="ResetBoard" parent="Switches" instance=ExtResource( 5 )]
-position = Vector2( 154, -27 )
+position = Vector2( 347, -27 )
 setting_name = "reset_board"
-label = "Reset"
+label = "Reset [R]"
 
 [node name="HintLabels" parent="Switches" instance=ExtResource( 4 )]
-position = Vector2( 225, -27 )
+position = Vector2( 12, -52 )
 setting_name = "hint_labels"
 label = "Show Moves"
+
+[node name="Undo" parent="Switches" instance=ExtResource( 5 )]
+position = Vector2( 418, -27 )
+setting_name = "undo"
+label = "Undo [Z]"
+
+[node name="Redo" parent="Switches" instance=ExtResource( 5 )]
+position = Vector2( 418, -52 )
+setting_name = "redo"
+label = "Redo [X]"
+
+[node name="Shortcuts" parent="Switches" instance=ExtResource( 5 )]
+position = Vector2( 347, -52 )
+setting_name = "show_shortcuts"
+label = "Shortcuts"
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]
@@ -62,3 +77,6 @@ label = "Show Moves"
 [connection signal="setting_button" from="Switches/ShowRules" to="." method="button_pressed"]
 [connection signal="setting_button" from="Switches/ResetBoard" to="." method="button_pressed"]
 [connection signal="setting_change" from="Switches/HintLabels" to="." method="setting_change"]
+[connection signal="setting_button" from="Switches/Undo" to="." method="button_pressed"]
+[connection signal="setting_button" from="Switches/Redo" to="." method="button_pressed"]
+[connection signal="setting_button" from="Switches/Shortcuts" to="." method="button_pressed"]
