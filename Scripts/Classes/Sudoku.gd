@@ -185,3 +185,15 @@ func advance_time(delta):
 
 func get_time():
 	return timer
+
+
+# HISTORY
+func undo():
+	var undo_result = history.undo()
+	modified_data[undo_result.address.x][undo_result.address.y] = undo_result.previous_value
+
+func redo():
+	var redo_result = history.redo()
+	modified_data[redo_result.address.x][redo_result.address.y] = redo_result.current_value
+
+

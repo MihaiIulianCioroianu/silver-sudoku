@@ -35,9 +35,10 @@ func add_action(action):
 	pointer += 1
 
 func undo():
+	var to_return = get_current_action()
 	if pointer > 0:
 		pointer -= 1
-	return get_current_action()
+	return to_return
 
 func redo():
 	if pointer+1 < history.size():
