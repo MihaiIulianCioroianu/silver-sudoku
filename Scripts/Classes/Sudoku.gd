@@ -5,6 +5,7 @@ extends "res://Scripts/SystemFunctions.gd"
 # ENUMS
 enum FORMAT {X9=9, X6=6, X4=4, HEX=16}
 # VARIABLES
+var object_version = 3
 var id:int
 var sudoku_name:String
 var format:int
@@ -45,7 +46,7 @@ func format2string(format_code):
 func _to_string():
 	var string_to_return = ""
 	string_to_return += "Board ID "+str(id)+" "+"<<"+sudoku_name+">>"+"\n"
-	string_to_return += "Format: "+format2string(format)+"\n"
+	string_to_return += "Format: "+format2string(format)+" V"+str(object_version)+"\n"
 	string_to_return += "Timer: "+str(timer)+"\n"
 	if format == FORMAT.X9:
 		for i in modified_data:

@@ -64,10 +64,15 @@ func add_test_board():
 
 func dict2sudoku(dict):
 	var sudoku_to_return
-	if "complete" in dict:
-		sudoku_to_return = Sudoku.new(dict["id"], dict["sudoku_name"], dict["format"], dict["data"], float(dict["timer"]), dict["modified_data"], bool(dict["complete"]))
+	if ("object_version" in dict) and (dict["object_version"] == "3"):
+		# Object Version 3
+		sudoku_to_return = Sudoku.new(dict["id"], dict["sudoku_name"], dict["format"], dict["data"], dict["history"], float(dict["timer"]), dict["modified_data"], bool(dict["complete"]))
+	elif "complete" in dict:
+		# Object Version 2
+		sudoku_to_return = Sudoku.new(dict["id"], dict["sudoku_name"], dict["format"], dict["data"], null, float(dict["timer"]), dict["modified_data"], bool(dict["complete"]))
 	else:
-		sudoku_to_return = Sudoku.new(dict["id"], dict["sudoku_name"], dict["format"], dict["data"], float(dict["timer"]), dict["modified_data"])
+		# Object Version 1
+		sudoku_to_return = Sudoku.new(dict["id"], dict["sudoku_name"], dict["format"], dict["data"], null, float(dict["timer"]), dict["modified_data"])
 	return sudoku_to_return
 
 func load_board(board_data):

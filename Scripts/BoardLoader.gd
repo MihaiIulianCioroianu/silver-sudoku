@@ -64,7 +64,7 @@ func _ready():
 	var f
 	var sudoku
 	for i in BOARDS:
-		sudoku = Sudoku.new(id, NAMES[id], Sudoku.FORMAT.X9, i)
+		sudoku = Sudoku.new(id, NAMES[id], Sudoku.FORMAT.X9, i, null)
 		print(sudoku)
 		f = File.new()
 		f.open("user://SudokuBoard"+str(id)+".sdk", File.WRITE)
