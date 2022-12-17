@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/SimpleButton.gd"
 }, {
+"base": "Node",
+"class": "SimpleSudokuAction",
+"language": "GDScript",
+"path": "res://Scripts/Classes/SimpleSudokuAction.gd"
+}, {
 "base": "Node2D",
 "class": "SimpleSwitch",
 "language": "GDScript",
@@ -100,6 +105,7 @@ _global_script_class_icons={
 "ResizeableWindow": "",
 "SettingsTray": "",
 "SimpleButton": "",
+"SimpleSudokuAction": "",
 "SimpleSwitch": "",
 "Sudoku": "",
 "SudokuBoard": "",
