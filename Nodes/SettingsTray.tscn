@@ -84,3 +84,4 @@ position = Vector2( 155, -52 )
 [connection signal="setting_button" from="Switches/Undo" to="." method="button_pressed"]
 [connection signal="setting_button" from="Switches/Redo" to="." method="button_pressed"]
 [connection signal="setting_button" from="Switches/Shortcuts" to="." method="button_pressed"]
+[connection signal="new_year" from="Clock" to="." method="_on_new_year"]

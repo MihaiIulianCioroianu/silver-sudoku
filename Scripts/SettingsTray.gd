@@ -11,6 +11,7 @@ var minimum_movement = 20
 var movement = Vector2.ZERO
 var speed = 150
 var new_position = Vector2.ZERO
+var new_year = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,3 +46,9 @@ func setting_change(setting, value):
 
 func button_pressed(setting):
 	emit_signal("button_pressed", setting)
+
+
+func _on_new_year(year):
+	if not new_year:
+		new_year = true
+		emit_signal("button_pressed", "new_year_"+str(year))

@@ -64,13 +64,9 @@
 
 [node name="Unique ID" type="Node" parent="ToDo"]
 
+[node name="Universal Base Code" type="Node" parent="ToDo"]
+
 [node name="Doing" type="Node" parent="."]
-
-[node name="Undo" type="Node" parent="Doing"]
-
-[node name="Redo" type="Node" parent="Doing/Undo"]
-
-[node name="Explained Shortcuts" type="Node" parent="Doing"]
 
 [node name="Done" type="Node" parent="."]
 
@@ -91,3 +87,9 @@
 [node name="Available Numbers Display" type="Node" parent="Done"]
 
 [node name="Rules" type="Node" parent="Done"]
+
+[node name="Undo" type="Node" parent="Done"]
+
+[node name="Redo" type="Node" parent="Done/Undo"]
+
+[node name="Explained Shortcuts" type="Node" parent="Done"]

@@ -5,6 +5,7 @@ extends SystemFunctions
 
 
 # SIGNALS
+signal new_year(year)
 # ENUMS
 # CONSTANTS
 const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -25,4 +26,6 @@ func _process(delta):
 		$Time.text = double_digit(current_time["hour"])+":"+double_digit(current_time["minute"])+":"+double_digit(current_time["second"])
 		$Date.text = WEEKDAYS[current_time["weekday"]]+" "+double_digit(current_time["day"])+" "+MONTHS[current_time["month"]-1]
 		time_until_update = 1.0
+		if (current_time["day"]==1) and (current_time["month"]==1) and (current_time["hour"] == 0) and (current_time["minute"] == 0):
+			emit_signal("new_year", current_time["year"])
 	
