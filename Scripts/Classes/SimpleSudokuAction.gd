@@ -27,3 +27,7 @@ func _ready():
 # TOSTRING
 func _to_string():
 	return "ADR:"+str(address)+" PRV:"+str(previous_value)+" ACT:"+str(actual_value)
+
+# SUBLIMATE
+func sublimate():
+	return inst2dict(self)

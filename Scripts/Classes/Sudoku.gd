@@ -17,7 +17,7 @@ var history:ActionHistory
 
 
 # BUILDER
-func _init(_id:int, _sudoku_name:String, _format:int, _data, _history:ActionHistory, _timer:float = 0, _modified_data = [], _complete = false):
+func _init(_id:int, _sudoku_name:String, _format:int, _data, _history, _timer:float = 0, _modified_data = [], _complete = false):
 	id = _id
 	sudoku_name = _sudoku_name
 	format = _format
@@ -29,6 +29,8 @@ func _init(_id:int, _sudoku_name:String, _format:int, _data, _history:ActionHist
 	complete = _complete
 	if _history == null:
 		history = ActionHistory.new(SimpleSudokuAction.new(Vector2(0, 0), data[0][0], data[0][0]))
+	elif typeof(_history) == TYPE_DICTIONARY:
+		history = dict2history(_history)
 	else:
 		history = _history
 
@@ -184,6 +186,15 @@ func reset_board():
 	history = ActionHistory.new(SimpleSudokuAction.new(Vector2(0, 0), data[0][0], data[0][0]))
 	complete = false
 
+func to_dict():
+	var to_return = inst2dict(self)
+	to_return["history"] = history.sublimate()
+	return to_return
+
+func dict2history(dict):
+	var to_return = ActionHistory.new(0)
+	to_return.deposit(dict)
+	return to_return
 
 # TIMER
 func advance_time(delta):

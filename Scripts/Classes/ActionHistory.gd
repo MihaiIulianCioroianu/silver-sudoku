@@ -45,6 +45,26 @@ func redo():
 		pointer += 1
 	return get_current_action()
 
+# SUBLIMATION-DEPOSITION
+func sublimate():
+	var sublimated_history = []
+	for i in history:
+		sublimated_history.append(i.sublimate())
+	var to_return = inst2dict(self)
+	to_return["history"] = sublimated_history
+	return to_return
+
+func deposit(dict):
+	history = []
+	for i in dict["history"]:
+		history.append(dict2action(i))
+	pointer = dict["pointer"]
+
+func dict2action(dict):
+	if typeof(dict) == TYPE_DICTIONARY:
+		return SimpleSudokuAction.new(dict["address"], dict["previous_value"], dict["actual_value"])
+	else:
+		return 0
 
 # GETTER
 func get_current_action():

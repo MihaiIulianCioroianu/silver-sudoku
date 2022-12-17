@@ -237,14 +237,16 @@ func save_board():
 	var f
 	f = File.new()
 	f.open("user://SudokuBoard"+str(sudoku_ID+1)+".sdk", File.WRITE)
-	f.store_var(inst2dict(current_sudoku()))
+	f.store_var(current_sudoku().to_dict())
 	f.close()
 
 # UNDO-REDO
 func undo():
 	current_sudoku().undo()
 	refresh()
+	save_board()
 
 func redo():
 	current_sudoku().redo()
 	refresh()
+	save_board()
