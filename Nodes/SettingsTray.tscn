@@ -43,7 +43,7 @@ label = "About"
 
 [node name="ShowRules" parent="Switches" instance=ExtResource( 5 )]
 position = Vector2( 83, -52 )
-setting_name = "show_about"
+setting_name = "show_rules"
 label = "Rules"
 
 [node name="ResetBoard" parent="Switches" instance=ExtResource( 5 )]
