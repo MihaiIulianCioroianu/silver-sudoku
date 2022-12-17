@@ -47,6 +47,10 @@ func _input(event):
 		reset_board()
 	elif event.is_action_pressed("CHECK"):
 		check_board_done()
+	elif event.is_action_pressed("UNDO"):
+		undo()
+	elif event.is_action_pressed("REDO"):
+		redo()
 	elif event.is_action_pressed("ui_left"):
 		previous_board()
 	elif event.is_action_pressed("ui_right"):
@@ -64,10 +68,15 @@ func add_test_board():
 
 func dict2sudoku(dict):
 	var sudoku_to_return
-	if "complete" in dict:
-		sudoku_to_return = Sudoku.new(dict["id"], dict["sudoku_name"], dict["format"], dict["data"], float(dict["timer"]), dict["modified_data"], bool(dict["complete"]))
+	if ("object_version" in dict) and (dict["object_version"] == 3):
+		# Object Version 3
+		sudoku_to_return = Sudoku.new(dict["id"], dict["sudoku_name"], dict["format"], dict["data"], dict["history"], float(dict["timer"]), dict["modified_data"], bool(dict["complete"]))
+	elif "complete" in dict:
+		# Object Version 2
+		sudoku_to_return = Sudoku.new(dict["id"], dict["sudoku_name"], dict["format"], dict["data"], null, float(dict["timer"]), dict["modified_data"], bool(dict["complete"]))
 	else:
-		sudoku_to_return = Sudoku.new(dict["id"], dict["sudoku_name"], dict["format"], dict["data"], float(dict["timer"]), dict["modified_data"])
+		# Object Version 1
+		sudoku_to_return = Sudoku.new(dict["id"], dict["sudoku_name"], dict["format"], dict["data"], null, float(dict["timer"]), dict["modified_data"])
 	return sudoku_to_return
 
 func load_board(board_data):
@@ -168,6 +177,7 @@ func original_board():
 func update_tile(key_input):
 	var error_number
 	if not original_board()[selected.x][selected.y]:
+		current_sudoku().history.add_action(SimpleSudokuAction.new(selected, current_sudoku().modified_data[selected.x][selected.y], key_input))
 		selected_tile().set_number(key_input)
 		current_sudoku().change_tile(selected, key_input)
 		error_number = check_board_valid()
@@ -182,12 +192,6 @@ func advance_time(delta):
 
 func get_time():
 	return current_sudoku().get_time()
-
-func double_digit(number):
-	if number>=10:
-		return str(number)
-	else:
-		return "0"+str(number)
 
 func set_timer_display(timer):
 	timer = int(timer)
@@ -227,5 +231,16 @@ func save_board():
 	var f
 	f = File.new()
 	f.open("user://SudokuBoard"+str(sudoku_ID+1)+".sdk", File.WRITE)
-	f.store_var(inst2dict(current_sudoku()))
+	f.store_var(current_sudoku().to_dict())
 	f.close()
+
+# UNDO-REDO
+func undo():
+	current_sudoku().undo()
+	refresh()
+	save_board()
+
+func redo():
+	current_sudoku().redo()
+	refresh()
+	save_board()

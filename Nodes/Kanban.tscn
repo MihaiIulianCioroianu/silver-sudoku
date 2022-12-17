@@ -4,18 +4,6 @@
 
 [node name="ToDo" type="Node" parent="."]
 
-[node name="Hint Service" type="Node" parent="ToDo"]
-
-[node name="Limited Hints" type="Node" parent="ToDo/Hint Service"]
-
-[node name="Hints add Time" type="Node" parent="ToDo/Hint Service"]
-
-[node name="Level Maker" type="Node" parent="ToDo"]
-
-[node name="Unique Solution Detect" type="Node" parent="ToDo/Level Maker"]
-
-[node name="Number Wheel on Hold-Click" type="Node" parent="ToDo"]
-
 [node name="Alternate Symbols" type="Node" parent="ToDo"]
 
 [node name="Number in Corner" type="Node" parent="ToDo/Alternate Symbols"]
@@ -24,19 +12,23 @@
 
 [node name="Auto-Fill 8-9 lines" type="Node" parent="ToDo"]
 
+[node name="Block Incorrect Moves" type="Node" parent="ToDo"]
+
+[node name="Hint Service" type="Node" parent="ToDo"]
+
+[node name="Limited Hints" type="Node" parent="ToDo/Hint Service"]
+
+[node name="Hints add Time" type="Node" parent="ToDo/Hint Service"]
+
 [node name="Level Generator" type="Node" parent="ToDo"]
 
 [node name="Difficulties" type="Node" parent="ToDo/Level Generator"]
 
-[node name="Block Incorrect Moves" type="Node" parent="ToDo"]
+[node name="Level Maker" type="Node" parent="ToDo"]
 
-[node name="Pencil" type="Node" parent="ToDo"]
+[node name="Unique Solution Detect" type="Node" parent="ToDo/Level Maker"]
 
-[node name="Commit Pencil" type="Node" parent="ToDo/Pencil"]
-
-[node name="Tip of the Day" type="Node" parent="ToDo"]
-
-[node name="Progress Counter" type="Node" parent="ToDo"]
+[node name="Number Wheel on Hold-Click" type="Node" parent="ToDo"]
 
 [node name="Other Sudoku Types" type="Node" parent="ToDo"]
 
@@ -52,13 +44,27 @@
 
 [node name="Hexadecimal" type="Node" parent="ToDo/Other Sudoku Types"]
 
+[node name="Pause" type="Node" parent="ToDo"]
+
+[node name="Pencil" type="Node" parent="ToDo"]
+
+[node name="Commit Pencil" type="Node" parent="ToDo/Pencil"]
+
+[node name="Progress Counter" type="Node" parent="ToDo"]
+
+[node name="Rebuild Save System" type="Node" parent="ToDo"]
+
+[node name="Rebuild SudokuObj - Board Relation" type="Node" parent="ToDo"]
+
 [node name="Time Challenge" type="Node" parent="ToDo"]
 
-[node name="Undo" type="Node" parent="ToDo"]
+[node name="Tip of the Day" type="Node" parent="ToDo"]
 
-[node name="Redo" type="Node" parent="ToDo/Undo"]
+[node name="Translations" type="Node" parent="ToDo"]
 
 [node name="Unique ID" type="Node" parent="ToDo"]
+
+[node name="Universal Base Code" type="Node" parent="ToDo"]
 
 [node name="Doing" type="Node" parent="."]
 
@@ -81,3 +87,9 @@
 [node name="Available Numbers Display" type="Node" parent="Done"]
 
 [node name="Rules" type="Node" parent="Done"]
+
+[node name="Undo" type="Node" parent="Done"]
+
+[node name="Redo" type="Node" parent="Done/Undo"]
+
+[node name="Explained Shortcuts" type="Node" parent="Done"]

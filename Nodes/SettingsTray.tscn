@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/Sprites/SettingsTrayHandle.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Sprites/SettingsTray.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/SettingsTray.gd" type="Script" id=3]
 [ext_resource path="res://Nodes/SimpleSwitch.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Nodes/SimpleButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Nodes/Clock.tscn" type="PackedScene" id=6]
 
 [node name="SettingsTray" type="Node2D"]
 script = ExtResource( 3 )
@@ -41,19 +42,37 @@ setting_name = "show_about"
 label = "About"
 
 [node name="ShowRules" parent="Switches" instance=ExtResource( 5 )]
-position = Vector2( 296, -27 )
-setting_name = "show_about"
+position = Vector2( 83, -52 )
+setting_name = "show_rules"
 label = "Rules"
 
 [node name="ResetBoard" parent="Switches" instance=ExtResource( 5 )]
-position = Vector2( 154, -27 )
+position = Vector2( 347, -27 )
 setting_name = "reset_board"
-label = "Reset"
+label = "Reset [R]"
 
 [node name="HintLabels" parent="Switches" instance=ExtResource( 4 )]
-position = Vector2( 225, -27 )
+position = Vector2( 12, -52 )
 setting_name = "hint_labels"
 label = "Show Moves"
+
+[node name="Undo" parent="Switches" instance=ExtResource( 5 )]
+position = Vector2( 418, -27 )
+setting_name = "undo"
+label = "Undo [Z]"
+
+[node name="Redo" parent="Switches" instance=ExtResource( 5 )]
+position = Vector2( 418, -52 )
+setting_name = "redo"
+label = "Redo [X]"
+
+[node name="Shortcuts" parent="Switches" instance=ExtResource( 5 )]
+position = Vector2( 347, -52 )
+setting_name = "show_shortcuts"
+label = "Shortcuts"
+
+[node name="Clock" parent="." instance=ExtResource( 6 )]
+position = Vector2( 155, -52 )
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]
@@ -62,3 +81,7 @@ label = "Show Moves"
 [connection signal="setting_button" from="Switches/ShowRules" to="." method="button_pressed"]
 [connection signal="setting_button" from="Switches/ResetBoard" to="." method="button_pressed"]
 [connection signal="setting_change" from="Switches/HintLabels" to="." method="setting_change"]
+[connection signal="setting_button" from="Switches/Undo" to="." method="button_pressed"]
+[connection signal="setting_button" from="Switches/Redo" to="." method="button_pressed"]
+[connection signal="setting_button" from="Switches/Shortcuts" to="." method="button_pressed"]
+[connection signal="new_year" from="Clock" to="." method="_on_new_year"]

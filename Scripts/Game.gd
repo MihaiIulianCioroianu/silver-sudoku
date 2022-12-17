@@ -161,6 +161,14 @@ func _on_trayButtonPressed(setting):
 		$Board.reset_board()
 	elif setting == "show_rules":
 		create_message(_Messages.RULES)
+	elif setting == "show_shortcuts":
+		create_message(_Messages.SHORTCUTS)
+	elif "new_year" in setting:
+		create_message(_Messages.NEW_YEAR)
+	elif setting == "undo":
+		$Board.undo()
+	elif setting == "redo":
+		$Board.redo()
 
 func refresh_settings_tray():
 	$SettingsTray.refresh(settings)

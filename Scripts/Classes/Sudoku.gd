@@ -5,6 +5,7 @@ extends "res://Scripts/SystemFunctions.gd"
 # ENUMS
 enum FORMAT {X9=9, X6=6, X4=4, HEX=16}
 # VARIABLES
+var object_version = 3
 var id:int
 var sudoku_name:String
 var format:int
@@ -12,18 +13,27 @@ var data = []
 var modified_data = []
 var timer:float
 var complete:bool
+var history:ActionHistory
+
 
 # BUILDER
-func _init(bid:int, bsudoku_name:String, bformat:int, bdata, btimer:float = 0, bmodified_data = [], bcomplete = false):
-	id = bid
-	sudoku_name = bsudoku_name
-	format = bformat
-	data = duplicate_board(bdata)
-	modified_data = duplicate_board(bmodified_data)
+func _init(_id:int, _sudoku_name:String, _format:int, _data, _history, _timer:float = 0, _modified_data = [], _complete = false):
+	id = _id
+	sudoku_name = _sudoku_name
+	format = _format
+	data = duplicate_board(_data)
+	modified_data = duplicate_board(_modified_data)
 	if modified_data.empty():
-		modified_data = duplicate_board(bdata)
-	timer = btimer
-	complete = bcomplete
+		modified_data = duplicate_board(_data)
+	timer = _timer
+	complete = _complete
+	if _history == null:
+		history = ActionHistory.new(SimpleSudokuAction.new(Vector2(0, 0), data[0][0], data[0][0]))
+	elif typeof(_history) == TYPE_DICTIONARY:
+		history = dict2history(_history)
+	else:
+		history = _history
+
 
 # TOSTRING
 func format2string(format_code):
@@ -40,12 +50,13 @@ func format2string(format_code):
 func _to_string():
 	var string_to_return = ""
 	string_to_return += "Board ID "+str(id)+" "+"<<"+sudoku_name+">>"+"\n"
-	string_to_return += "Format: "+format2string(format)+"\n"
+	string_to_return += "Format: "+format2string(format)+" V"+str(object_version)+"\n"
 	string_to_return += "Timer: "+str(timer)+"\n"
 	if format == FORMAT.X9:
 		for i in modified_data:
 			string_to_return += str(i)+"\n"
 	return string_to_return
+
 
 # BOARD CHECKS
 func check_board_done():
@@ -148,6 +159,7 @@ func check_available_moves(address):
 func set_complete():
 	complete = true
 
+
 # GETTER
 func get_board():
 	return duplicate_board(modified_data)
@@ -157,6 +169,7 @@ func get_original_board():
 
 func get_title():
 	return sudoku_name
+
 
 # LOADER/SAVER
 func update_board(new_board):
@@ -170,7 +183,18 @@ func change_tile(address, value):
 func reset_board():
 	modified_data = duplicate_board(data)
 	timer = 0
+	history = ActionHistory.new(SimpleSudokuAction.new(Vector2(0, 0), data[0][0], data[0][0]))
 	complete = false
+
+func to_dict():
+	var to_return = inst2dict(self)
+	to_return["history"] = history.sublimate()
+	return to_return
+
+func dict2history(dict):
+	var to_return = ActionHistory.new(0)
+	to_return.deposit(dict)
+	return to_return
 
 # TIMER
 func advance_time(delta):
@@ -180,3 +204,15 @@ func advance_time(delta):
 
 func get_time():
 	return timer
+
+
+# HISTORY
+func undo():
+	var undo_result = history.undo()
+	modified_data[undo_result.address.x][undo_result.address.y] = undo_result.previous_value
+
+func redo():
+	var redo_result = history.redo()
+	modified_data[redo_result.address.x][redo_result.address.y] = redo_result.actual_value
+
+
