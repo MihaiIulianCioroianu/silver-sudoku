@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/Classes/ActionHistory.gd"
 }, {
 "base": "Node",
+"class": "ActionHistoryObjectTester",
+"language": "GDScript",
+"path": "res://Scripts/Utility/ActionHistoryObjectTester.gd"
+}, {
+"base": "Node",
 "class": "Board",
 "language": "GDScript",
 "path": "res://Scripts/Board.gd"
@@ -22,7 +27,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "BoardLoader",
 "language": "GDScript",
-"path": "res://Scripts/Utility/BoardLoader.gd"
+"path": "res://Scripts/BoardLoader.gd"
 }, {
 "base": "Node2D",
 "class": "Game",
@@ -96,6 +101,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ActionHistory": "",
+"ActionHistoryObjectTester": "",
 "Board": "",
 "BoardLoader": "",
 "Game": "",
