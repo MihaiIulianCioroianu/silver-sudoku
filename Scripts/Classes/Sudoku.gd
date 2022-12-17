@@ -15,6 +15,7 @@ var timer:float
 var complete:bool
 var history:ActionHistory
 
+
 # BUILDER
 func _init(_id:int, _sudoku_name:String, _format:int, _data, _history:ActionHistory, _timer:float = 0, _modified_data = [], _complete = false):
 	id = _id
@@ -30,6 +31,7 @@ func _init(_id:int, _sudoku_name:String, _format:int, _data, _history:ActionHist
 		history = ActionHistory.new(SimpleSudokuAction.new(Vector2(0, 0), data[0][0], data[0][0]))
 	else:
 		history = _history
+
 
 # TOSTRING
 func format2string(format_code):
@@ -52,6 +54,7 @@ func _to_string():
 		for i in modified_data:
 			string_to_return += str(i)+"\n"
 	return string_to_return
+
 
 # BOARD CHECKS
 func check_board_done():
@@ -154,6 +157,7 @@ func check_available_moves(address):
 func set_complete():
 	complete = true
 
+
 # GETTER
 func get_board():
 	return duplicate_board(modified_data)
@@ -163,6 +167,7 @@ func get_original_board():
 
 func get_title():
 	return sudoku_name
+
 
 # LOADER/SAVER
 func update_board(new_board):
@@ -176,7 +181,9 @@ func change_tile(address, value):
 func reset_board():
 	modified_data = duplicate_board(data)
 	timer = 0
+	history = ActionHistory.new(SimpleSudokuAction.new(Vector2(0, 0), data[0][0], data[0][0]))
 	complete = false
+
 
 # TIMER
 func advance_time(delta):
@@ -195,6 +202,6 @@ func undo():
 
 func redo():
 	var redo_result = history.redo()
-	modified_data[redo_result.address.x][redo_result.address.y] = redo_result.current_value
+	modified_data[redo_result.address.x][redo_result.address.y] = redo_result.actual_value
 
 
