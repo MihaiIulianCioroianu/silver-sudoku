@@ -46,10 +46,6 @@
 
 [node name="Pause" type="Node" parent="ToDo"]
 
-[node name="Pencil" type="Node" parent="ToDo"]
-
-[node name="Commit Pencil" type="Node" parent="ToDo/Pencil"]
-
 [node name="Progress Counter" type="Node" parent="ToDo"]
 
 [node name="Rebuild Save System" type="Node" parent="ToDo"]
@@ -60,6 +56,8 @@
 
 [node name="Tip of the Day" type="Node" parent="ToDo"]
 
+[node name="Holiday Messaes" type="Node" parent="ToDo/Tip of the Day"]
+
 [node name="Translations" type="Node" parent="ToDo"]
 
 [node name="Unique ID" type="Node" parent="ToDo"]
@@ -67,6 +65,10 @@
 [node name="Universal Base Code" type="Node" parent="ToDo"]
 
 [node name="Doing" type="Node" parent="."]
+
+[node name="Pencil" type="Node" parent="Doing"]
+
+[node name="Commit Pencil" type="Node" parent="Doing/Pencil"]
 
 [node name="Done" type="Node" parent="."]
 

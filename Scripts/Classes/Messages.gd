@@ -11,4 +11,4 @@ var SHORTCUTS = Message.new(Vector2(300, 180), ["SHORTCUTS", "", "[Z] - Undo", "
 var NEW_YEAR = Message.new(Vector2(300, 50), ["HAPPY NEW YEAR "])
 
 func _init():
-	NEW_YEAR.lines[0] += str(Time.get_date_dict_from_system()["year"])
+	NEW_YEAR.lines[0] += str(Time.get_date_dict_from_system()["year"]+1)
