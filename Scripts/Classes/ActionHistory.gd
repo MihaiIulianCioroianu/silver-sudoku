@@ -50,7 +50,7 @@ func sublimate():
 	var sublimated_history = []
 	for i in history:
 		sublimated_history.append(i.sublimate())
-	var to_return = inst2dict(self)
+	var to_return = inst_to_dict(self)
 	to_return["history"] = sublimated_history
 	return to_return
 

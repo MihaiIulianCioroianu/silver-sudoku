@@ -68,6 +68,7 @@ func add_test_board():
 
 func dict2sudoku(dict):
 	var sudoku_to_return
+	print(dict)
 	if ("object_version" in dict) and (dict["object_version"] == 3):
 		# Object Version 3
 		sudoku_to_return = Sudoku.new(dict["id"], dict["sudoku_name"], dict["format"], dict["data"], dict["history"], float(dict["timer"]), dict["modified_data"], bool(dict["complete"]))
@@ -106,14 +107,14 @@ func update_board_number_display():
 func add_tiles():
 	var ins
 	for i in range(81):
-		ins = NUMBER_TILE.instance()
+		ins = NUMBER_TILE.instantiate()
 		ins.position.x = 3+(i%9)*50+3*((i%9)/3)
 		ins.position.y = 3+(i/9)*50+3*(i/27)
 		ins.address.x = i/9
 		ins.address.y = i%9
 		ins.name = "NumberTile-"+str(i/9)+str(i%9)
 		$Tiles.add_child(ins)
-		get_node("Tiles/NumberTile-"+str(i/9)+str(i%9)).connect("tile_pressed", self, "_on_tile_pressed")
+		get_node("Tiles/NumberTile-"+str(i/9)+str(i%9)).connect("tile_pressed", _on_tile_pressed)
 
 func refresh():
 	var current_tile
@@ -229,8 +230,7 @@ func check_setting(setting_name):
 
 func save_board():
 	var f
-	f = File.new()
-	f.open("user://SudokuBoard"+str(sudoku_ID+1)+".sdk", File.WRITE)
+	f = FileAccess.open("user://SudokuBoard"+str(sudoku_ID+1)+".sdk", FileAccess.WRITE)
 	f.store_var(current_sudoku().to_dict())
 	f.close()
 

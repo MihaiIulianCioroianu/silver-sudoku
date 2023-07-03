@@ -66,9 +66,8 @@ func _ready():
 	for i in BOARDS:
 		sudoku = Sudoku.new(id, NAMES[id], Sudoku.FORMAT.X9, i, null)
 		print(sudoku)
-		f = File.new()
-		f.open("user://SudokuBoard"+str(id)+".sdk", File.WRITE)
-		f.store_var(inst2dict(sudoku))
+		f = FileAccess.open("user://SudokuBoard"+str(id)+".sdk", FileAccess.WRITE)
+		f.store_var(inst_to_dict(sudoku))
 		f.close()
 		id+=1
 	get_parent().load_boards()

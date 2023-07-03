@@ -5,9 +5,9 @@ extends Node2D
 # SIGNALS
 signal setting_change(setting, value)
 # EXPORTED VARIABLES
-export var setting_name = ""
-export var label = ""
-export var current_value = true
+@export var setting_name = ""
+@export var label = ""
+@export var current_value = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

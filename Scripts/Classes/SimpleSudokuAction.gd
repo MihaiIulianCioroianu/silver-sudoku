@@ -30,4 +30,4 @@ func _to_string():
 
 # SUBLIMATE
 func sublimate():
-	return inst2dict(self)
+	return inst_to_dict(self)

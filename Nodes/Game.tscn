@@ -1,176 +1,167 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=3 uid="uid://nok40d3pjmwj"]
 
-[ext_resource path="res://Resources/Sprites/GameBG.png" type="Texture" id=1]
-[ext_resource path="res://Nodes/Board.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scripts/Game.gd" type="Script" id=3]
-[ext_resource path="res://Resources/Sprites/MinimizeButton.png" type="Texture" id=4]
-[ext_resource path="res://Resources/Sprites/CloseButton.png" type="Texture" id=5]
-[ext_resource path="res://Resources/Sprites/BoardSelection.png" type="Texture" id=6]
-[ext_resource path="res://Resources/Sprites/BoardSelectionShade0.png" type="Texture" id=7]
-[ext_resource path="res://Resources/Sprites/BoardSelectionShade.png" type="Texture" id=8]
-[ext_resource path="res://Resources/Fonts/Arial.tres" type="DynamicFont" id=9]
-[ext_resource path="res://Resources/Sprites/Bar.png" type="Texture" id=10]
-[ext_resource path="res://Resources/Animations/FadeOut.tres" type="Animation" id=11]
-[ext_resource path="res://Resources/Animations/Scroll.tres" type="Animation" id=12]
-[ext_resource path="res://Resources/Animations/Descroll.tres" type="Animation" id=13]
-[ext_resource path="res://Nodes/SettingsTray.tscn" type="PackedScene" id=14]
+[ext_resource type="Texture2D" uid="uid://r26b8svar4ue" path="res://Resources/Sprites/GameBG.png" id="1"]
+[ext_resource type="PackedScene" path="res://Nodes/Board.tscn" id="2"]
+[ext_resource type="Script" path="res://Scripts/Game.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://hmycfd5gb8tg" path="res://Resources/Sprites/MinimizeButton.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://g217en3clqch" path="res://Resources/Sprites/CloseButton.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://dfsk4uuvbmgf0" path="res://Resources/Sprites/BoardSelection.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://de7yc6uc0ymia" path="res://Resources/Sprites/BoardSelectionShade0.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://cvv4d8wrnt37x" path="res://Resources/Sprites/BoardSelectionShade.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://djogfeh07l8gm" path="res://Resources/Sprites/BarShade.png" id="8_dvbfv"]
+[ext_resource type="Texture2D" uid="uid://cqooy04qfduq6" path="res://Resources/Sprites/Bar.png" id="10"]
+[ext_resource type="Animation" path="res://Resources/Animations/FadeOut.tres" id="11"]
+[ext_resource type="Animation" path="res://Resources/Animations/Scroll.tres" id="12"]
+[ext_resource type="Animation" path="res://Resources/Animations/Descroll.tres" id="13"]
+[ext_resource type="PackedScene" path="res://Nodes/SettingsTray.tscn" id="14"]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 230, 10 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(460, 20)
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 length = 0.001
 tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:modulate:r")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
 }
 tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:modulate:g")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
 }
 tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath(".:modulate:b")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
 }
 tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
 tracks/3/path = NodePath(".:modulate:a")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
 tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
 }
 tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
 tracks/4/path = NodePath(".:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
 tracks/5/path = NodePath(".:window_size")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ 700 ]
+"values": [700]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hgmif"]
+_data = {
+"Descroll": ExtResource("13"),
+"FadeOut": ExtResource("11"),
+"RESET": SubResource("3"),
+"Scroll": ExtResource("12")
 }
 
 [node name="Game" type="Node2D"]
-script = ExtResource( 3 )
+script = ExtResource("3")
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1")
 centered = false
 
-[node name="Board" parent="." instance=ExtResource( 2 )]
-position = Vector2( 19, 132 )
+[node name="Board" parent="." instance=ExtResource("2")]
+position = Vector2(19, 132)
 
-[node name="SettingsTray" parent="." instance=ExtResource( 14 )]
-position = Vector2( 0, 20 )
+[node name="SettingsTray" parent="." instance=ExtResource("14")]
+position = Vector2(0, 20)
 
 [node name="Bar" type="Area2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="Bar"]
-texture = ExtResource( 10 )
+[node name="Sprite" type="Sprite2D" parent="Bar"]
+texture = ExtResource("10")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bar"]
-position = Vector2( 230, 10 )
-shape = SubResource( 1 )
+position = Vector2(230, 10)
+shape = SubResource("1")
 
 [node name="CloseButton" type="TextureButton" parent="Bar"]
-margin_left = 480.0
-margin_right = 500.0
-margin_bottom = 20.0
-texture_normal = ExtResource( 5 )
+offset_left = 480.0
+offset_right = 500.0
+offset_bottom = 20.0
+texture_normal = ExtResource("5")
 
 [node name="MinimizeButton" type="TextureButton" parent="Bar"]
-margin_left = 460.0
-margin_right = 480.0
-margin_bottom = 20.0
-texture_normal = ExtResource( 4 )
+offset_left = 460.0
+offset_right = 480.0
+offset_bottom = 20.0
+texture_normal = ExtResource("4")
 
 [node name="TextureButton" type="TextureButton" parent="Bar"]
-margin_right = 460.0
-margin_bottom = 20.0
+texture_normal = ExtResource("8_dvbfv")
 
-[node name="BoardSelector" type="Sprite" parent="."]
-position = Vector2( 400, 630 )
-texture = ExtResource( 6 )
+[node name="BoardSelector" type="Sprite2D" parent="."]
+position = Vector2(400, 630)
+texture = ExtResource("6")
 centered = false
 
 [node name="Previous" type="TextureButton" parent="BoardSelector"]
-margin_left = 6.0
-margin_top = 15.0
-margin_right = 34.0
-margin_bottom = 35.0
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 8 )
-stretch_mode = 2
+texture_normal = ExtResource("7")
+texture_pressed = ExtResource("8")
 
 [node name="Next" type="TextureButton" parent="BoardSelector"]
-margin_left = 36.0
-margin_top = 15.0
-margin_right = 64.0
-margin_bottom = 35.0
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 8 )
-stretch_mode = 2
+texture_normal = ExtResource("7")
+texture_pressed = ExtResource("8")
 flip_h = true
 
 [node name="Label" type="Label" parent="BoardSelector"]
-modulate = Color( 0.184314, 0.184314, 0.184314, 1 )
-margin_left = 15.0
-margin_top = 3.0
-margin_right = 54.0
-margin_bottom = 17.0
-custom_fonts/font = ExtResource( 9 )
+modulate = Color(0.184314, 0.184314, 0.184314, 1)
 text = "20772"
-align = 1
 
 [node name="InputBlock" type="CenterContainer" parent="."]
 visible = false
-margin_top = 19.0
-margin_right = 563.0
-margin_bottom = 754.0
 
 [node name="MessageLayer" type="Node2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Descroll = ExtResource( 13 )
-anims/FadeOut = ExtResource( 11 )
-anims/RESET = SubResource( 3 )
-anims/Scroll = ExtResource( 12 )
+libraries = {
+"": SubResource("AnimationLibrary_hgmif")
+}
 
 [connection signal="button_pressed" from="SettingsTray" to="." method="_on_trayButtonPressed"]
 [connection signal="setting_change" from="SettingsTray" to="." method="_on_settingChange"]

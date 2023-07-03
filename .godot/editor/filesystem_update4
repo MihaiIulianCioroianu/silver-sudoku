@@ -1,0 +1,15 @@
+res://Nodes/Game.tscn
+res://Scripts/Board.gd
+res://Scripts/Classes/Sudoku.gd
+res://Scripts/Classes/SimpleSudokuAction.gd
+res://Scripts/Classes/ActionHistory.gd
+res://Scripts/NumberTile.gd
+res://Scripts/Game.gd
+res://Scripts/BoardLoader.gd
+res://Scripts/Classes/Message.gd
+res://Nodes/BoardLoader.tscn
+res://Scripts/SettingsTray.gd
+res://Nodes/SimpleSwitch.tscn
+res://Scripts/SimpleSwitch.gd
+res://Scripts/SimpleButton.gd
+res://Nodes/SimpleButton.tscn

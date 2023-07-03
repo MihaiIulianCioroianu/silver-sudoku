@@ -6,6 +6,6 @@ extends Node
 var window_size = Vector2(300, 50)
 var lines = []
 
-func _init(size:Vector2, lineset:PoolStringArray):
+func _init(size:Vector2, lineset:PackedStringArray):
 	window_size = size
 	lines = lineset

@@ -40,11 +40,11 @@ func _on_Area2D_mouse_entered():
 	movement = Vector2.DOWN
 
 
-func setting_change(setting, value):
+func _setting_change(setting, value):
 	emit_signal("setting_change", setting, value)
 
 
-func button_pressed(setting):
+func _button_pressed(setting):
 	emit_signal("button_pressed", setting)
 
 

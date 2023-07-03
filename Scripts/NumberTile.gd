@@ -5,9 +5,9 @@ extends Node2D
 # SIGNALS
 signal tile_pressed
 # EXPORTED VARIABLES
-export var number = 0
-export var null_value = 0
-export var blocked = false
+@export var number = 0
+@export var null_value = 0
+@export var blocked = false
 # VARIABLES
 var selected = false
 var hint_label = true
@@ -28,7 +28,7 @@ func check_empty():
 
 func set_hint_labels(number_set):
 	for i in $HintLabels.get_children():
-		if int(i.name[9]) in number_set:
+		if int(str(i.name)[9]) in number_set:
 			i.visible = true
 		else:
 			i.visible = false

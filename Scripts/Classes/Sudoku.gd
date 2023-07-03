@@ -23,11 +23,11 @@ func _init(_id:int, _sudoku_name:String, _format:int, _data, _history, _timer:fl
 	format = _format
 	data = duplicate_board(_data)
 	modified_data = duplicate_board(_modified_data)
-	if modified_data.empty():
+	if modified_data.is_empty():
 		modified_data = duplicate_board(_data)
 	timer = _timer
 	complete = _complete
-	if _history == null:
+	if (_history == null) or (typeof(_history) == TYPE_OBJECT):
 		history = ActionHistory.new(SimpleSudokuAction.new(Vector2(0, 0), data[0][0], data[0][0]))
 	elif typeof(_history) == TYPE_DICTIONARY:
 		history = dict2history(_history)
@@ -187,7 +187,7 @@ func reset_board():
 	complete = false
 
 func to_dict():
-	var to_return = inst2dict(self)
+	var to_return = inst_to_dict(self)
 	to_return["history"] = history.sublimate()
 	return to_return
 
